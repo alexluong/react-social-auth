@@ -15,6 +15,7 @@ class AuthSuccessPage extends Component {
     const hash = this.props.location.hash;
     if (hash.length === 0) {
       this.setState({ checked: true });
+      return;
     }
 
     const accessToken = hash.slice(1);
@@ -24,9 +25,13 @@ class AuthSuccessPage extends Component {
   }
 
   render() {
-    return (
-      <div>Auth Success</div>
-    );
+    const { checked, success } = this.state;
+    if (checked && !success) {
+      return <p>Auth Fail</p>;
+    }
+
+    // TODO: This should be a spinner
+    return <p>Auth Success</p>;
   }
 }
 
