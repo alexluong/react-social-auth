@@ -1,4 +1,4 @@
-import SERVER_URI from './server';
+import SERVER_URI from '../server';
 
 const google    = {};
 google.start    = `${SERVER_URI}/auth/google/start`;
