@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Stuff = (props) => {
-  return (
-    <div>Stuff</div>
-  );
-};
+class Stuff extends React.Component {
+  render() {
+    return (
+      <div>Stuff</div>
+    );
+  }
+}
 
 export default Stuff;

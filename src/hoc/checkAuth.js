@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { getAccessToken, history } from '../config';
-const requireAuth = (WrappedComponent, login, redirect = '/sign-in', checkWithServer) => {
-  return class extends Component {
+
+const requireAuth = (WrappedComponent, login, redirect = 'sign-in', checkWithServer) => {
+  return class extends React.Component {
     state = {
       checked: false,
       through: false
     };
 
     componentDidMount() {
+      console.log(redirect);
       const token = getAccessToken();
       if (!token) {
         if (login) {

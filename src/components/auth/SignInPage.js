@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { config } from '../../config';
 import SignInForm from './SignInForm';
 
-class SignInPage extends Component {
+class SignInPage extends React.Component {
   onSubmit = values => {
     console.log(values);
   }

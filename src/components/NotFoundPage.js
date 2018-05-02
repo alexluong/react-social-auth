@@ -1,7 +1,9 @@
 import React from 'react';
 
-const NotFoundPage = (props) => (
-  <div>Not Found</div>
-);
+class NotFoundPage extends React.Component {
+  render() {
+    return <div>Not Found</div>;
+  }
+}
 
 export default NotFoundPage;

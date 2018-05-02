@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React                from 'react';
 import { connect }          from 'react-redux';
 
 import { getUser } from '../../actions';
@@ -7,7 +7,7 @@ import {
   history
 } from '../../config';
 
-class AuthSuccessPage extends Component {
+class AuthSuccessPage extends React.Component {
   state = {
     checked: false,
     success: false
