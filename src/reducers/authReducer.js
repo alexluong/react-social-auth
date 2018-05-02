@@ -1,11 +1,24 @@
-import { AUTH_USER, AUTH_ERROR } from '../config/types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../config/types';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case AUTH_USER:
-      return { ...state, user: action.payload, authorized: true };
+      return {
+        ...state,
+        user: action.payload,
+        authorized: true
+      };
+    case UNAUTH_USER:
+      return {
+        ...state,
+        authorized: false
+      };
     case AUTH_ERROR:
-      return { ...state, errorMessage: action.payload, authorized: false };
+      return {
+        ...state,
+        errorMessage: action.payload,
+        authorized: false
+      };
     default:
       return { ...state };
   }

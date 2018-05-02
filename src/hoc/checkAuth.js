@@ -1,32 +1,36 @@
 import React, { Component } from 'react';
 
-import { getAccessToken } from '../config/localStorage';
-import history            from '../config/history';
-
-const requireAuth = (WrappedComponent, redirect = '/login', checkWithServer = 0) => {
+import { getAccessToken, history } from '../config';
+const requireAuth = (WrappedComponent, login, redirect = '/sign-in', checkWithServer) => {
   return class extends Component {
     state = {
       checked: false,
-      authed: false
+      through: false
     };
 
     componentDidMount() {
       const token = getAccessToken();
       if (!token) {
+        if (login) {
+          return this.setState({ checked: true, through: true });
+        }
         if (redirect) {
           history.push(redirect);
         }
         return this.setState({ checked: true });
       }
-      this.setState({ checked: true, authed: true });
+      if (login) {
+        history.push('/');
+      }
+      this.setState({ checked: true, through: true });
     }
 
     render() {
-      const { checked, authed } = this.state;
+      const { checked, through } = this.state;
       if (!checked) {
         // TODO: Spinner
         return <p>Checking</p>;
-      } else if (!authed) {
+      } else if (!through) {
         return <p>Unauthorized</p>;
       } else {
         return <WrappedComponent {...this.props} hi="there" />;

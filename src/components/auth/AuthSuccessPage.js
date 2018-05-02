@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 
-import { getUser }         from '../../actions';
-import { saveAccessToken } from '../../config/localStorage';
-import history             from '../../config/history';
+import { getUser } from '../../actions';
+import {
+  saveAccessToken,
+  history
+} from '../../config';
 
 class AuthSuccessPage extends Component {
   state = {

@@ -18,3 +18,11 @@ export const getAccessToken = () => {
     return undefined;
   }
 }
+
+export const removeAccessToken = () => {
+  try {
+    localStorage.removeItem('accessToken');
+  } catch (error) {
+    console.log(error);
+  }
+}
