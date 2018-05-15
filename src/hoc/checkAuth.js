@@ -10,7 +10,6 @@ const requireAuth = (WrappedComponent, login, redirect = 'sign-in', checkWithSer
     };
 
     componentDidMount() {
-      console.log(redirect);
       const token = getAccessToken();
       if (!token) {
         if (login) {
