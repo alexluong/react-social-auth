@@ -1,12 +1,7 @@
 import axios from 'axios';
 
-import { removeAccessToken } from '../config';
-import {
-  AUTH_USER,
-  UNAUTH_USER,
-  AUTH_ERROR,
-  SERVER_URI
-} from '../config';
+import { removeAccessToken, SERVER_URI }      from 'config';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 
 export const getUser = token => {
   return async dispatch => {

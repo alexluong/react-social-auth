@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../config/types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {

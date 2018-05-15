@@ -1,11 +1,11 @@
-import React                from 'react';
-import { connect }          from 'react-redux';
+import React       from 'react';
+import { connect } from 'react-redux';
 
-import { getUser } from '../../actions';
+import { getUser } from 'modules/auth';
 import {
   saveAccessToken,
   history
-} from '../../config';
+} from 'config';
 
 class AuthSuccessPage extends React.Component {
   state = {

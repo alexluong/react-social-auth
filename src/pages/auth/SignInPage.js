@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { config } from '../../config';
+import { config } from 'config';
 import SignInForm from './SignInForm';
 
 class SignInPage extends React.Component {

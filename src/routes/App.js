@@ -2,15 +2,15 @@ import React                       from 'react';
 import { Router }                  from 'react-router'; // To use history
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import RouteWithLayout  from './RouteWithLayout';
-import AuthSuccessPage  from './auth/AuthSuccessPage';
-import SignInPage       from './auth/SignInPage';
-import SignOutPage      from './auth/SignOutPage';
-import Stuff            from './Stuff';
-import NotFoundPage     from './NotFoundPage';
+import RouteWithLayout  from 'routes/RouteWithLayout';
+import AuthSuccessPage  from 'pages/auth/AuthSuccessPage';
+import SignInPage       from 'pages/auth/SignInPage';
+import SignOutPage      from 'pages/auth/SignOutPage';
+import Stuff            from 'pages/Stuff';
+import NotFoundPage     from 'pages/NotFoundPage';
 
-import checkAuth   from '../hoc/checkAuth';
-import { history } from '../config';
+import checkAuth   from 'hoc/checkAuth';
+import { history } from 'config';
 
 class App extends React.Component {
   render() {
