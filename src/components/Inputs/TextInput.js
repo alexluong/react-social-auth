@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.label`
   display: inline-block;
   position: relative;
-  width: 150px;
+  width: 100%;
 `;
 
 const Input = styled.input`
@@ -40,7 +40,8 @@ const Input = styled.input`
     }
 
     & ~ span > span {
-      bottom: calc(40px + .5em);
+      bottom: 40px;
+      opacity: 1;
     }
   }
 `;

@@ -8,6 +8,7 @@ injectGlobal`
     padding: 0;
     box-sizing: inherit;
     z-index: 1;
+    font-size: inherit;
   }
   html, body {
     height: 100%;

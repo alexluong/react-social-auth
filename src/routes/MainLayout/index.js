@@ -1,14 +1,14 @@
 import React from 'react';
 
-class Layout extends React.Component {
+class MainLayout extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello</h1>
+        <h1>Main</h1>
         {this.props.children}
       </div>
     );
   }
 }
 
-export default Layout;
+export default MainLayout;

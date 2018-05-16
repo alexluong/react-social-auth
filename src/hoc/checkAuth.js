@@ -34,7 +34,7 @@ const requireAuth = (WrappedComponent, login, redirect = 'sign-in', checkWithSer
       } else if (!through) {
         return <p>Unauthorized</p>;
       } else {
-        return <WrappedComponent {...this.props} hi="there" />;
+        return <WrappedComponent {...this.props} />;
       }
     }
   };
