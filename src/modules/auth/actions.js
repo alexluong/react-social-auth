@@ -19,6 +19,18 @@ export const getUser = token => {
   };
 };
 
+export const signIn = ({ username, password }) => {
+  return async dispatch => {
+    try {
+      const response = await axios.post(`${SERVER_URI}/auth/local/signin`, { username, password });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      dispatch(authError(error.data));
+    }
+  };
+};
+
 export const signOut = () => {
   return dispatch => {
     removeAccessToken();

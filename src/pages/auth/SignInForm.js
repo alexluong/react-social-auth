@@ -12,31 +12,29 @@ class SignInForm extends React.Component {
   renderInputField = (field) => {
     const { input, type, placeholder, label } = field;
     return (
-      <div>
-        <TextInput 
-          type={type}
-          placeholder={placeholder}
-          label={label}
-          {...input}
-          required
-        />
-      </div>
+      <TextInput 
+        type={type}
+        placeholder={placeholder}
+        label={label}
+        {...input}
+        required
+      />
     );
   };
 
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post" >
         <Field name="username" type="text"
-          placeholder="Email/Username"  
-          label="Enter email or username"
+          placeholder="you@example.com"  
+          label="Enter Email/Username:"
           component={this.renderInputField}
         />
 
         <Field name="password" type="password"
-          placeholder="password..."
-          label="Enter password"
+          placeholder="password"
+          label="Enter Password:"
           component={this.renderInputField}
         />
 

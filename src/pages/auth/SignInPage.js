@@ -1,13 +1,15 @@
-import React from 'react';
+import React       from 'react';
+import { connect } from 'react-redux';
 
 import { config } from 'config';
+import { signIn } from 'modules/auth';
 import SignInForm from './SignInForm';
 
 import { LinkButton } from 'components/Buttons';
 
 class SignInPage extends React.Component {
   onSubmit = values => {
-    console.log(values);
+    this.props.signIn(values);
   }
 
   render() {
@@ -20,4 +22,4 @@ class SignInPage extends React.Component {
   }
 }
 
-export default SignInPage;
+export default connect(null, { signIn })(SignInPage);
