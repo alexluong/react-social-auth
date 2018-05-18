@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { removeAccessToken, SERVER_URI }      from 'config';
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import { saveAccessToken, removeAccessToken, SERVER_URI, history } from 'config';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_AUTH_ERROR }    from './types';
 
 export const getUser = token => {
   return async dispatch => {
@@ -23,10 +23,12 @@ export const signIn = ({ username, password }) => {
   return async dispatch => {
     try {
       const response = await axios.post(`${SERVER_URI}/auth/local/signin`, { username, password });
-      console.log(response);
+      const token    = response.data.token;
+      saveAccessToken(token);
+      history.push('/');
+      dispatch(getUser(token));
     } catch (error) {
-      console.log(error);
-      dispatch(authError(error.data));
+      dispatch(authError(error.response.data));
     }
   };
 };
@@ -44,3 +46,9 @@ export const authError = error => {
     payload: error
   };
 };
+
+export const clearErrorMessage = () => {
+  return {
+    type: CLEAR_AUTH_ERROR
+  }
+}

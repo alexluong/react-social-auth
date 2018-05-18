@@ -13,8 +13,10 @@ class SignInPage extends React.Component {
   }
 
   render() {
+    const { errorMessage } = this.props;
     return (
       <div>
+        { errorMessage && <p>{errorMessage}</p> }
         <SignInForm onSubmit={this.onSubmit} />
         <LinkButton href={config.google.start}>Sign In with Google</LinkButton>
       </div>
@@ -22,4 +24,8 @@ class SignInPage extends React.Component {
   }
 }
 
-export default connect(null, { signIn })(SignInPage);
+const mapStateToProps = state => {
+  return { errorMessage: state.auth.errorMessage };
+};
+
+export default connect(mapStateToProps, { signIn })(SignInPage);
