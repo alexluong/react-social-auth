@@ -3,7 +3,9 @@ import React from 'react';
 import { TextInput } from 'components/Inputs'
 
 const renderInputField = field => {
-  const { input, type, placeholder, label, onFocus, required } = field;
+  const { input, type, placeholder, label, required } = field;
+  const { onFocus } = input;
+  
   return (
     <TextInput 
       {...input}

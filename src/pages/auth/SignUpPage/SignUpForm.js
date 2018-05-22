@@ -20,17 +20,17 @@ class SignUpForm extends React.Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit} method="post" >
-        <Field name="name" type="text"
-          placeholder="Tony Stark"
-          label="Enter name:"
+        <Field name="username" type="text"
+          placeholder="your_username"
+          label="Enter username:"
           component={renderInputField}
           onFocus={this.clearErrorMessage}
           required
         />
 
-        <Field name="username" type="text"
+        <Field name="email" type="email"
           placeholder="you@example.com"
-          label="Enter email or username:"
+          label="Enter email:"
           component={renderInputField}
           onFocus={this.clearErrorMessage}
           required
