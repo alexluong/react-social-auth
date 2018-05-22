@@ -3,46 +3,45 @@ import { connect }          from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { func }             from 'prop-types';
 
-import { TextInput }         from 'components/Inputs';
 import { clearErrorMessage } from 'modules/auth';
+import renderInputField      from '../renderInputField';
 
-class SignInForm extends React.Component {
+class SignUpForm extends React.Component {
   static propTypes = {
-    handleSubmit: func.isRequired
+    handleSubmit: func.isRequired,
+    onSubmit: func.isRequired
   };
 
   clearErrorMessage = () => {
     this.props.clearErrorMessage();
   }
 
-  renderInputField = (field) => {
-    const { input, type, placeholder, label } = field;
-    return (
-      <TextInput 
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        label={label}
-        onFocus={this.clearErrorMessage}
-        required
-      />
-    );
-  };
-
   render() {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit} method="post" >
+        <Field name="name" type="text"
+          placeholder="Tony Stark"
+          label="Enter name:"
+          component={renderInputField}
+          onFocus={this.clearErrorMessage}
+          required
+        />
+
         <Field name="username" type="text"
-          placeholder="you@example.com"  
+          placeholder="you@example.com"
           label="Enter email or username:"
-          component={this.renderInputField}
+          component={renderInputField}
+          onFocus={this.clearErrorMessage}
+          required
         />
 
         <Field name="password" type="password"
           placeholder="password"
           label="Enter password:"
-          component={this.renderInputField}
+          component={renderInputField}
+          onFocus={this.clearErrorMessage}
+          required
         />
 
         <button type="submit">Submit</button>
@@ -52,7 +51,7 @@ class SignInForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'sign-in'
+  form: 'sign-up'
 })(
-  connect(null, { clearErrorMessage })(SignInForm)
+  connect(null, { clearErrorMessage })(SignUpForm)
 );

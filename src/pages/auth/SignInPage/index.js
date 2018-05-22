@@ -15,11 +15,12 @@ class SignInPage extends React.Component {
   render() {
     const { errorMessage } = this.props;
     return (
-      <div>
+      <React.Fragment>
         { errorMessage && <p>{errorMessage}</p> }
         <SignInForm onSubmit={this.onSubmit} />
-        <LinkButton href={config.google.start}>Sign In with Google</LinkButton>
-      </div>
+        <LinkButton inline={false} href={config.google.start}>Sign In with Google</LinkButton>
+        <LinkButton inline={false} isRRLink to="/sign-up">Don't have an account? Sign up.</LinkButton>
+      </React.Fragment>
     );
   }
 }

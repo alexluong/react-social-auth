@@ -24,7 +24,7 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-width: 2px;
-	  border-image: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(123,255,0,1) 100%);
+	  border-image: linear-gradient(to right top, rgba(210,255,82,1) 0%, rgba(123,255,0,1) 100%);
     border-image-slice: 1;
   }
 `;

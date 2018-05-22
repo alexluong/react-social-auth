@@ -1,13 +1,11 @@
 import 'config/theme';
 
-import React                            from 'react';
-import ReactDOM                         from 'react-dom';
-import { Provider }                     from 'react-redux';
+import React    from 'react';
+import ReactDOM from 'react-dom';
 
-import store from 'modules/store';
-import App   from 'routes/App';
+import Root from 'routes/Root';
 
 ReactDOM.render(
-  <Provider store={store}><App /></Provider>,
+  <Root />,
   document.getElementById('root')
 );
