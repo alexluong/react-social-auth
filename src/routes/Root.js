@@ -15,6 +15,7 @@ import SignInPage       from 'pages/auth/SignInPage';
 import SignUpPage       from 'pages/auth/SignUpPage';
 import SignOutPage      from 'pages/auth/SignOutPage';
 import Stuff            from 'pages/Stuff';
+import Facebook         from 'pages/Facebook';
 import NotFoundPage     from 'pages/NotFoundPage';
 
 // Misc
@@ -22,20 +23,20 @@ import checkAuth       from 'hoc/checkAuth';
 import routeWithLayout from 'hoc/routeWithLayout'
 import { history }     from 'config';
 
-
 class Root extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <Router history={history}>
           <Switch>
-            <Route path="/sign-out"    component={SignOutPage} />
-            <Route path="/sign-in"     component={checkAuth(routeWithLayout(SignInPage, AuthLayout), true)} />
-            <Route path="/sign-up"     component={checkAuth(routeWithLayout(SignUpPage, AuthLayout), true)} />
-            <Route path="/dashboard"   component={checkAuth(routeWithLayout(Stuff, MainLayout))} />
+            <Route path="/sign-out" component={SignOutPage} />
+            <Route path="/sign-in"  component={checkAuth(routeWithLayout(SignInPage, AuthLayout), true)} />
+            <Route path="/sign-up"  component={checkAuth(routeWithLayout(SignUpPage, AuthLayout), true)} />
+            <Route path="/home"     component={checkAuth(routeWithLayout(Stuff     , MainLayout)      )} />
+            <Route path="/facebook" component={checkAuth(routeWithLayout(Facebook  , MainLayout)      )} />
 
             <Route path="/auth/success" component={AuthSuccessPage} /> { /* OAuth success */ }
-            <Redirect exact  from="/" to="/dashboard" />
+            <Redirect exact  from="/" to="/home" />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

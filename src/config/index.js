@@ -1,9 +1,9 @@
-import google from './auth/google';
+import auth from './auth';
 import SERVER_URI from './server';
 
 const config = {};
-config.SERVER_URI = SERVER_URI;
-config.google     = google;
+config.google   = auth.google;
+config.facebook = auth.facebook;
 
 export * from './history';
 export * from './localStorage';

@@ -19,6 +19,7 @@ class SignInPage extends React.Component {
         { errorMessage && <p>{errorMessage}</p> }
         <SignInForm onSubmit={this.onSubmit} />
         <LinkButton inline={false} href={config.google.start}>Sign In with Google</LinkButton>
+        <LinkButton inline={false} href={config.facebook.start}>Sign In with Facebook</LinkButton>
         <LinkButton inline={false} isRRLink to="/sign-up">Don't have an account? Sign up.</LinkButton>
       </React.Fragment>
     );

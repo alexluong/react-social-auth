@@ -3,17 +3,6 @@ import axios from 'axios';
 import { saveAccessToken, removeAccessToken, SERVER_URI, history } from 'config';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_AUTH_ERROR }    from './types';
 
-export const signUp = ({ username, email, password }) => {
-  return async dispatch => {
-    try {
-      await axios.post(`${SERVER_URI}/auth/local/signup`, { username, email, password });
-      history.push('/sign-in');
-    } catch (error) {
-      dispatch(authError(error.response.data));
-    }
-  };
-};
-
 export const getUser = token => {
   return async dispatch => {
     try {
@@ -38,6 +27,17 @@ export const signIn = ({ username, password }) => {
       saveAccessToken(token);
       history.push('/');
       dispatch(getUser(token));
+    } catch (error) {
+      dispatch(authError(error.response.data));
+    }
+  };
+};
+
+export const signUp = ({ username, email, password }) => {
+  return async dispatch => {
+    try {
+      await axios.post(`${SERVER_URI}/auth/local/signup`, { username, email, password });
+      history.push('/sign-in');
     } catch (error) {
       dispatch(authError(error.response.data));
     }
