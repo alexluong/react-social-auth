@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Toggle extends React.Component {
+class Toggle extends React.Component {
   state = {
     on: false
   };
@@ -18,3 +18,5 @@ export default class Toggle extends React.Component {
     });
   }
 }
+
+export default Toggle;

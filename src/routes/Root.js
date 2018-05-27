@@ -21,7 +21,7 @@ import NotFoundPage     from 'pages/NotFoundPage';
 // Misc
 import checkAuth       from 'hoc/checkAuth';
 import routeWithLayout from 'hoc/routeWithLayout'
-import { history }     from 'config';
+import history         from './history';
 
 class Root extends React.Component {
   render() {

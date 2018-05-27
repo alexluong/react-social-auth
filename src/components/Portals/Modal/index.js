@@ -1,31 +1,59 @@
-import React  from 'react';
-import styled from 'styled-components';
+import React     from 'react';
+import PropTypes from 'prop-types';
+import styled    from 'styled-components';
 
 import Portal from '../Portal';
-import Toggle from 'components/Toggle';
+import Icon   from 'components/Icon';
 
 class Modal extends React.Component {
-  render() {
+  static propTypes = {
+    closeButton: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
+    close: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    closeButton: true
+  };
+
+  renderCloseButton() {
+    const { closeButton, close } = this.props;
+    if (!closeButton) {
+      return null;
+    }
+
     return (
-      <Toggle>
-        {({ on, toggle }) => (
-          <React.Fragment>
-            <button onClick={toggle}>Click Me</button>
-            { on && (
-              <Portal>
-                <ModalWrapper>
-                  <ModalCard>
-                    <CloseButton onClick={toggle}>Close</CloseButton>
-                    { this.props.children }
-                  </ModalCard>
-                  <Background onClick={toggle} />
-                </ModalWrapper>
-              </Portal>
-            )}
-          </React.Fragment>
-        )}
-      </Toggle>
+      <CloseButton onClick={close}>
+        <Icon name="close" width={16} height={16} />
+      </CloseButton>
     );
+  }
+
+  renderOverlay() {
+    const { closeOnOverlayClick, close } = this.props;
+    const onOverlayClick = closeOnOverlayClick ? close : () => {};
+    
+    return <Background onClick={onOverlayClick} />
+  }
+
+  render() {
+    const { isOpen, children } = this.props;
+
+    if (!isOpen) {
+      return null;
+    }
+
+    return (
+      <Portal>
+        <ModalWrapper>
+          <ModalCard>
+            { this.renderCloseButton() }
+            { children }
+          </ModalCard>
+          { this.renderOverlay() }
+        </ModalWrapper>
+      </Portal>
+    )
   }
 }
 
@@ -57,6 +85,13 @@ const CloseButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Background = styled.div`

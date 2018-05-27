@@ -2,6 +2,7 @@ import React    from 'react';
 import { Link } from 'react-router-dom';
 
 import { Modal } from 'components/Portals';
+import Toggle    from 'components/Toggle';
 
 class Stuff extends React.Component {
   render() {
@@ -9,9 +10,16 @@ class Stuff extends React.Component {
       <div>
         <h1>Main App</h1>
         <Link to="/facebook">Facebook</Link>
-        <Modal>
-          <h1>Hello from the other side</h1>
-        </Modal>
+        <Toggle>
+          {({ on, toggle }) => (
+            <React.Fragment>
+              <button onClick={toggle}>Click me</button>
+              <Modal isOpen={on} close={toggle} closeOnOverlayClick={false}>
+                <h1>Hello from the other side</h1>
+              </Modal>
+            </React.Fragment>
+          )}
+        </Toggle>
       </div>
     );
   }

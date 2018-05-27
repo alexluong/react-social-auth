@@ -5,7 +5,6 @@ const config = {};
 config.google   = auth.google;
 config.facebook = auth.facebook;
 
-export * from './history';
 export * from './localStorage';
 
 export { SERVER_URI };
