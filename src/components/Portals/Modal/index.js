@@ -4,6 +4,10 @@ import {
   Transition,
   config
 } from 'react-spring';
+import {
+  TimingAnimation,
+  Easing
+} from 'react-spring/dist/addons.cjs';
 
 import Portal         from '../Portal';
 import ModalComponent from './ModalComponent';
@@ -45,12 +49,14 @@ class Modal extends React.Component {
     const { closeOnOverlayClick, close } = this.props;
 
     if (closeOnOverlayClick) {
-      this.setState({ on: false }, () => setTimeout(close, 300));
+      this.setState({
+        on: false
+      })
+      // , () => setTimeout(close, 300));
     }
   }
 
   onRest = () => {
-    console.log('onRest')
     if (!this.state.on) {
       this.props.close();
     }
@@ -67,8 +73,9 @@ class Modal extends React.Component {
             <Transition
               from ={{ ...this.opacity()                 , yTranslate: Y_TRANSLATE }}
               enter={{ ...this.opacity(overlayOpacity, 1), yTranslate: 0           }}
-              leave={{ ...this.opacity()                 , yTranslate: Y_TRANSLATE }}
-              config={config.gentle}
+              leave={{ ...this.opacity(.2)                 , yTranslate: Y_TRANSLATE }}
+              impl={TimingAnimation}
+              config={{ duration: 300, easing: Easing.linear }}
               onRest={this.onRest}
               native
             >

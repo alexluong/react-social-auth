@@ -32,6 +32,7 @@ class Stuff extends React.Component {
               to={{ height: on ? '500px' : '200px'}}
               toggle={toggle}
               children={Content}
+              onRest={() => console.log('onRest')}
             />
           )}
         </Toggle>
