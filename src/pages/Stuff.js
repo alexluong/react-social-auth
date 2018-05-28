@@ -8,7 +8,7 @@ class Stuff extends React.Component {
   render() {
     return (
       <div>
-        <h1>Main App</h1>
+        <h1>Stuff</h1>
         <Link to="/facebook">Facebook</Link>
         <Toggle>
           {({ on, toggle }) => (

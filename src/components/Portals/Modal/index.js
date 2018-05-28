@@ -2,6 +2,8 @@ import React     from 'react';
 import PropTypes from 'prop-types';
 import styled    from 'styled-components';
 
+import { getColor, elevation, position } from 'config/theme';
+
 import Portal from '../Portal';
 import Icon   from 'components/Icon';
 
@@ -60,22 +62,17 @@ class Modal extends React.Component {
 export default Modal;
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
+  ${position('absolute')}
   width: 100%;
   height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${position('centerChildren')}
 `;
 
 const ModalCard = styled.div`
   position: relative;
-  background: white;
+  background: ${getColor('background')};
   border-radius: 2px;
-  box-shadow: 2px 2px 10px rgba(0,0,0,.3);
+  box-shadow: ${elevation(4)};
   padding: 2rem;
   min-width: 400px;
   z-index: 10;
