@@ -1,6 +1,7 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
-import styled    from 'styled-components';
+import React          from 'react';
+import PropTypes      from 'prop-types';
+import { Transition } from 'react-spring';
+import styled         from 'styled-components';
 
 import { getColor, elevation, position } from 'config/theme';
 
@@ -11,11 +12,13 @@ class Modal extends React.Component {
   static propTypes = {
     closeButton: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
-    close: PropTypes.func.isRequired
+    close: PropTypes.func.isRequired,
+    closeOnOverlayClick: PropTypes.bool
   };
 
   static defaultProps = {
-    closeButton: true
+    closeButton: true,
+    closeOnOverlayClick: true
   };
 
   renderCloseButton() {
@@ -31,30 +34,29 @@ class Modal extends React.Component {
     );
   }
 
-  renderOverlay() {
-    const { closeOnOverlayClick, close } = this.props;
-    const onOverlayClick = closeOnOverlayClick ? close : () => {};
-    
-    return <Background onClick={onOverlayClick} />
-  }
-
   render() {
-    const { isOpen, children } = this.props;
+    const { isOpen, children, close, closeOnOverlayClick, overlayOpacity } = this.props;
 
-    if (!isOpen) {
-      return null;
-    }
+    const onOverlayClick = closeOnOverlayClick ? close : () => {};
 
     return (
-      <Portal>
-        <ModalWrapper>
-          <ModalCard>
-            { this.renderCloseButton() }
-            { children }
-          </ModalCard>
-          { this.renderOverlay() }
-        </ModalWrapper>
-      </Portal>
+      <Transition
+        from ={{ overlayOpacity: 0, cardOpacity: 0, background: 'pink' }}
+        enter={{ overlayOpacity: overlayOpacity, cardOpacity: 1, background: 'red' }}
+        leave={{ overlayOpacity: 0, cardOpacity: 0, background: 'pink' }}
+      >
+        {isOpen && (({ overlayOpacity, background, cardOpacity }) => (
+          <Portal>
+            <ModalWrapper>
+              <ModalCard style={{ background, opacity: cardOpacity }}>
+                {this.renderCloseButton()}
+                {children}
+              </ModalCard>
+              <Background onClick={onOverlayClick} opacity={overlayOpacity}/>
+            </ModalWrapper>
+          </Portal>
+        ))}
+      </Transition>
     )
   }
 }
@@ -98,5 +100,5 @@ const Background = styled.div`
   top: 0;
   left: 0;
   background-color: black;
-  opacity: 0.3;
+  opacity: ${props => props.opacity};
 `;
