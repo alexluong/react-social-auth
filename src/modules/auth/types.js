@@ -1,4 +1,4 @@
-export const AUTH_USER        = 'AUTH_USER';
-export const UNAUTH_USER      = 'UNAUTH_USER';
-export const AUTH_ERROR       = 'AUTH_ERROR';
-export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
+export const AUTH_USER        = '[auth] sign in';
+export const UNAUTH_USER      = '[auth] sign out';
+export const AUTH_ERROR       = '[auth] error';
+export const CLEAR_AUTH_ERROR = '[auth] clear error';
