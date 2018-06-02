@@ -6,6 +6,4 @@ const Center = styled.div`
   align-items: center;
 `;
 
-export {
-  Center
-};
+export { Center };

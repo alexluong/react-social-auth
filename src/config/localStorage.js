@@ -1,10 +1,10 @@
-export const saveAccessToken = (token) => {
+export const saveAccessToken = token => {
   try {
     localStorage.setItem('accessToken', token);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getAccessToken = () => {
   try {
@@ -17,7 +17,7 @@ export const getAccessToken = () => {
     console.log(error);
     return undefined;
   }
-}
+};
 
 export const removeAccessToken = () => {
   try {
@@ -25,4 +25,4 @@ export const removeAccessToken = () => {
   } catch (error) {
     console.log(error);
   }
-}
+};

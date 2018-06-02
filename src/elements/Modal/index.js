@@ -1,15 +1,9 @@
-import React          from 'react';
-import PropTypes      from 'prop-types';
-import {
-  Transition,
-  config
-} from 'react-spring';
-import {
-  TimingAnimation,
-  Easing
-} from 'react-spring/dist/addons.cjs';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Transition } from 'react-spring';
+import { TimingAnimation, Easing } from 'react-spring/dist/addons.cjs';
 
-import Portal         from '../Portal';
+import Portal from '../Portal';
 import ModalComponent from './ModalComponent';
 
 class Modal extends React.Component {
@@ -18,17 +12,17 @@ class Modal extends React.Component {
     isOpen: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
     closeOnOverlayClick: PropTypes.bool,
-    overlayOpacity: PropTypes.number
+    overlayOpacity: PropTypes.number,
   };
 
   static defaultProps = {
     closeButton: true,
     closeOnOverlayClick: true,
-    overlayOpacity: 0
+    overlayOpacity: 0,
   };
 
   state = {
-    on: false
+    on: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -41,7 +35,7 @@ class Modal extends React.Component {
   opacity(overlayOpacity = 0, cardOpacity = 0) {
     return {
       overlayOpacity,
-      cardOpacity
+      cardOpacity,
     };
   }
 
@@ -50,17 +44,17 @@ class Modal extends React.Component {
 
     if (closeOnOverlayClick) {
       this.setState({
-        on: false
-      })
+        on: false,
+      });
       // , () => setTimeout(close, 300));
     }
-  }
+  };
 
   onRest = () => {
     if (!this.state.on) {
       this.props.close();
     }
-  }
+  };
 
   render() {
     const { isOpen, overlayOpacity, children, closeButton } = this.props;
@@ -71,27 +65,28 @@ class Modal extends React.Component {
         {isOpen && (
           <Portal>
             <Transition
-              from ={{ ...this.opacity()                 , yTranslate: Y_TRANSLATE }}
-              enter={{ ...this.opacity(overlayOpacity, 1), yTranslate: 0           }}
-              leave={{ ...this.opacity(.2)                 , yTranslate: Y_TRANSLATE }}
+              from={{ ...this.opacity(), yTranslate: Y_TRANSLATE }}
+              enter={{ ...this.opacity(overlayOpacity, 1), yTranslate: 0 }}
+              leave={{ ...this.opacity(0.2), yTranslate: Y_TRANSLATE }}
               impl={TimingAnimation}
               config={{ duration: 300, easing: Easing.linear }}
               onRest={this.onRest}
               native
             >
-              {this.state.on && (styles => (
-                <ModalComponent
-                  {...styles}
-                  children={children}
-                  closeModal={this.closeModal}
-                  closeButton={closeButton}
-                />
-              ))}
+              {this.state.on &&
+                (styles => (
+                  <ModalComponent
+                    {...styles}
+                    children={children}
+                    closeModal={this.closeModal}
+                    closeButton={closeButton}
+                  />
+                ))}
             </Transition>
           </Portal>
         )}
       </React.Fragment>
-    )
+    );
   }
 }
 

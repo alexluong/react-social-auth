@@ -3,7 +3,7 @@ const absolute = ({
   x = 'left',
   y = 'top',
   xValue = '0',
-  yValue = '0'
+  yValue = '0',
 }) => `
   position: ${position};
   ${x}: ${xValue};
@@ -13,7 +13,7 @@ const absolute = ({
 const centerChildren = ({
   display = 'flex',
   justifyContent = 'center',
-  alignItems = 'center'
+  alignItems = 'center',
 }) => `
   display: ${display};
   justify-content: ${justifyContent};

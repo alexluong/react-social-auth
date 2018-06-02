@@ -1,26 +1,26 @@
-import React     from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class Toggle extends React.Component {
   static propTypes = {
-    on: PropTypes.bool
+    on: PropTypes.bool,
   };
 
   static defaultProps = {
-    on: false
+    on: false,
   };
 
   state = { on: false };
 
   static getDerivedStateFromProps(props, state) {
     return {
-      on: props.on
+      on: props.on,
     };
   }
 
   toggle = () => {
     this.setState(prevState => ({
-      on: !prevState.on
+      on: !prevState.on,
     }));
   };
 
@@ -28,19 +28,21 @@ class Toggle extends React.Component {
     if (this.state.on) {
       this.setState({ on: false });
     }
-  }
+  };
 
   open = () => {
     if (!this.state.on) {
       this.setState({ on: true });
     }
-  }
+  };
 
   render() {
     const {
-      toggle, open, close,
+      toggle,
+      open,
+      close,
       props: { children },
-      state: { on }
+      state: { on },
     } = this;
 
     return children({ on, toggle, open, close });

@@ -1,7 +1,7 @@
-import React  from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Center } from 'components/Containers';
+import { Center } from 'elements/Containers';
 
 const Page = styled(Center)`
   flex-direction: column;
@@ -18,9 +18,7 @@ class AuthLayout extends React.Component {
   render() {
     return (
       <Page>
-        <Container>
-          {this.props.children}
-        </Container>
+        <Container>{this.props.children}</Container>
       </Page>
     );
   }

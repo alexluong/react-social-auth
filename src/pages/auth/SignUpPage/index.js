@@ -1,23 +1,25 @@
-import React       from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { signUp } from 'modules/auth';
 
-import SignUpForm     from './SignUpForm';
-import { LinkButton } from 'components/Buttons';
+import SignUpForm from './SignUpForm';
+import { LinkButton } from 'elements/Buttons';
 
 class SignUpPage extends React.Component {
   onSubmit = values => {
     this.props.signUp(values);
-  }
+  };
 
   render() {
     const { errorMessage } = this.props;
     return (
       <React.Fragment>
-        { errorMessage && <p>{errorMessage}</p> }
+        {errorMessage && <p>{errorMessage}</p>}
         <SignUpForm onSubmit={this.onSubmit} />
-        <LinkButton isRRLink to="/sign-in">Have an account already? Sign in.</LinkButton>
+        <LinkButton isRRLink to="/sign-in">
+          Have an account already? Sign in.
+        </LinkButton>
       </React.Fragment>
     );
   }

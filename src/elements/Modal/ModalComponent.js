@@ -1,24 +1,30 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
-import styled       from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 import { getColor, elevation, position } from 'config/theme';
 
-import Icon from 'components/Icon';
+import Icon from '../Icon';
 
 const ModalComponent = ({
-  cardOpacity, overlayOpacity, yTranslate,
-  children, closeModal, closeButton
+  cardOpacity,
+  overlayOpacity,
+  yTranslate,
+  children,
+  closeModal,
+  closeButton,
 }) => (
   <ModalWrapper>
     <ModalCard
       style={{
         opacity: cardOpacity,
-        transform: yTranslate.interpolate(yTranslate => `translate3d(0, ${yTranslate}px, 0)`)
+        transform: yTranslate.interpolate(
+          yTranslate => `translate3d(0, ${yTranslate}px, 0)`,
+        ),
       }}
     >
-      { closeButton && (
+      {closeButton && (
         <CloseButton onClick={closeModal}>
           <Icon name="close" width={16} height={16} />
         </CloseButton>
@@ -28,11 +34,13 @@ const ModalComponent = ({
     <Background
       onClick={closeModal}
       style={{
-        opacity: overlayOpacity
+        opacity: overlayOpacity,
       }}
     />
   </ModalWrapper>
-)
+);
+
+export default ModalComponent;
 
 ModalComponent.propTypes = {
   cardOpacity: PropTypes.object.isRequired,
@@ -42,17 +50,14 @@ ModalComponent.propTypes = {
   closeModal: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
-export default ModalComponent;
-
 const ModalWrapper = styled.div`
-  ${position('absolute')}
-  width: 100%;
+  ${position('absolute')} width: 100%;
   height: 100%;
-  ${position('centerChildren')}
+  ${position('centerChildren')};
 `;
 
 const ModalCard = styled(animated.div)`

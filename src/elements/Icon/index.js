@@ -1,4 +1,4 @@
-import React     from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getColor, isColor } from 'config/theme';
@@ -11,13 +11,13 @@ class Icon extends React.Component {
     name: PropTypes.string.isRequired,
     color: PropTypes.string,
     width: PropTypes.number,
-    height: PropTypes.number
+    height: PropTypes.number,
   };
 
   static defaultProps = {
     color: getColor('text'),
     width: 16,
-    height: 16
+    height: 16,
   };
 
   render() {
@@ -26,7 +26,9 @@ class Icon extends React.Component {
 
     switch (name) {
       case 'close':
-        return <CloseIcon color={renderedColor} width={width} height={height} />
+        return (
+          <CloseIcon color={renderedColor} width={width} height={height} />
+        );
       default:
         console.error(`ERROR: ${name} is not an icon`);
         return <span>Error</span>;
