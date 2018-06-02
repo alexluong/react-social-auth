@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Spring } from 'react-spring';
 
+import { Color } from 'config/theme';
+
 import Modal from 'elements/Modal';
 import Toggle from 'elements/Toggle';
 
@@ -43,7 +45,12 @@ class Stuff extends React.Component {
 }
 
 const Content = ({ height, toggle }) => {
-  return <div style={{ height, backgroundColor: 'pink' }} onClick={toggle} />;
+  return (
+    <div
+      style={{ height, backgroundColor: new Color('primary').get() }}
+      onClick={toggle}
+    />
+  );
 };
 
 export default Stuff;

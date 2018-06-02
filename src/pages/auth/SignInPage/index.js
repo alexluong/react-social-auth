@@ -5,7 +5,7 @@ import { config } from 'config';
 import { signIn } from 'modules/auth';
 import SignInForm from './SignInForm';
 
-import { LinkButton } from 'elements/Buttons';
+import { LinkButton } from 'elements/Button';
 
 class SignInPage extends React.Component {
   onSubmit = values => {

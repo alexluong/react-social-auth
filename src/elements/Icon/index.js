@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getColor, isColor } from 'config/theme';
+import { Color } from 'config/theme';
 
 // Icons
 import CloseIcon from './CloseIcon';
@@ -15,14 +15,15 @@ class Icon extends React.Component {
   };
 
   static defaultProps = {
-    color: getColor('text'),
+    color: new Color('text').get(),
     width: 16,
     height: 16,
   };
 
   render() {
     const { name, color, width, height } = this.props;
-    const renderedColor = isColor(color) ? getColor(color) : color;
+    const colorInstance = new Color(color);
+    const renderedColor = colorInstance.exist() ? colorInstance.get() : color;
 
     switch (name) {
       case 'close':

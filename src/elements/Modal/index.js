@@ -40,13 +40,12 @@ class Modal extends React.Component {
   }
 
   closeModal = () => {
-    const { closeOnOverlayClick, close } = this.props;
+    const { closeOnOverlayClick } = this.props;
 
     if (closeOnOverlayClick) {
       this.setState({
         on: false,
       });
-      // , () => setTimeout(close, 300));
     }
   };
 

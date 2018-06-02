@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-import { getColor, elevation, position } from 'config/theme';
+import { Color, elevation, position } from 'config/theme';
 
 import Icon from '../Icon';
 
@@ -62,7 +62,7 @@ const ModalWrapper = styled.div`
 
 const ModalCard = styled(animated.div)`
   position: relative;
-  background: ${getColor('background')};
+  background: ${new Color('background').get()};
   border-radius: 2px;
   box-shadow: ${elevation(4)};
   padding: 2rem;

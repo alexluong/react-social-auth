@@ -22,7 +22,6 @@ import NotFoundPage from 'pages/NotFoundPage';
 
 // Misc
 import checkAuth from 'hoc/checkAuth';
-import routeWithLayout from 'hoc/routeWithLayout';
 import history from './history';
 import * as routes from './routes';
 
@@ -33,29 +32,17 @@ class Root extends React.Component {
         <Router history={history}>
           <Switch>
             <Route path={routes.SIGN_OUT} component={SignOutPage} />
-            <Route
+            <AuthLayout
               path={routes.SIGN_IN}
-              component={checkAuth(
-                routeWithLayout(SignInPage, AuthLayout),
-                true,
-              )}
+              component={checkAuth(SignInPage, true)}
             />
-            <Route
+            <AuthLayout
               path={routes.SIGN_UP}
-              component={checkAuth(
-                routeWithLayout(SignUpPage, AuthLayout),
-                true,
-              )}
+              component={checkAuth(SignUpPage, true)}
             />
-            <Route
-              path={routes.HOME}
-              component={checkAuth(routeWithLayout(Stuff, MainLayout))}
-            />
-            <Route
-              path="/facebook"
-              component={checkAuth(routeWithLayout(Facebook, MainLayout))}
-            />
-            <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />{' '}
+            <MainLayout path={routes.HOME} component={checkAuth(Stuff)} />
+            <MainLayout path="/facebook" component={checkAuth(Facebook)} />
+            <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />
             {/* OAuth success */}
             <Redirect exact from="/" to={routes.HOME} />
             <Route component={NotFoundPage} />
