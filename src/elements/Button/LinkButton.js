@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -14,17 +13,12 @@ const defaultProps = {
   tag: 'a',
 };
 
-const StyledLinkButton = styled(({ tag, children, inline, ...props }) =>
-  transformTag({ tag, children, ...props }),
+const LinkButton = styled(({ tag, inline, ...props }) =>
+  transformTag({ tag, ...props }),
 )`
   color: mediumaquamarine;
   display: ${props => (props.inline ? 'inline-block' : 'block')};
-  ${props => console.log(props)};
 `;
-
-const LinkButton = ({ tag, inline, ...props }) => (
-  <StyledLinkButton tag={tag} inline={inline} {...props} />
-);
 
 LinkButton.propTypes = propTypes;
 LinkButton.defaultProps = defaultProps;

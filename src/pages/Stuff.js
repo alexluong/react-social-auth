@@ -18,7 +18,7 @@ class Stuff extends React.Component {
           {({ on, toggle, close }) => (
             <React.Fragment>
               <button onClick={toggle}>Click me</button>
-              <Modal isOpen={on} close={close} overlayOpacity={0.3}>
+              <Modal isOpen={on} close={close}>
                 <h1>{message}</h1>
               </Modal>
             </React.Fragment>

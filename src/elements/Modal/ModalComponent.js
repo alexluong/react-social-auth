@@ -4,9 +4,21 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 import { elevation, position } from 'config/theme';
-import { Color } from 'utilities';
 
+import { Color } from 'utilities';
 import { Icon } from '../Icon';
+
+const propTypes = {
+  cardOpacity: PropTypes.object.isRequired,
+  overlayOpacity: PropTypes.object.isRequired,
+  yTranslate: PropTypes.object.isRequired,
+  closeButton: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 
 const ModalComponent = ({
   cardOpacity,
@@ -41,19 +53,9 @@ const ModalComponent = ({
   </ModalWrapper>
 );
 
-export default ModalComponent;
+ModalComponent.propTypes = propTypes;
 
-ModalComponent.propTypes = {
-  cardOpacity: PropTypes.object.isRequired,
-  overlayOpacity: PropTypes.object.isRequired,
-  yTranslate: PropTypes.object.isRequired,
-  closeButton: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
+export default ModalComponent;
 
 const ModalWrapper = styled.div`
   ${position('absolute')} width: 100%;

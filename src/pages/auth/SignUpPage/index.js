@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { signUp } from 'modules/auth';
-
+import { SIGN_IN } from 'routes';
 import SignUpForm from './SignUpForm';
+
 import { LinkButton } from 'elements';
 
 class SignUpPage extends React.Component {
@@ -18,7 +19,7 @@ class SignUpPage extends React.Component {
       <React.Fragment>
         {errorMessage && <p>{errorMessage}</p>}
         <SignUpForm onSubmit={this.onSubmit} />
-        <LinkButton tag={Link} to="/sign-in">
+        <LinkButton tag={Link} to={SIGN_IN}>
           Have an account already? Sign in.
         </LinkButton>
       </React.Fragment>

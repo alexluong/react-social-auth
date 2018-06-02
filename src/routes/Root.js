@@ -23,7 +23,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 // Misc
 import checkAuth from 'hoc/checkAuth';
 import history from './history';
-import * as routes from './routes';
+import * as routes from './';
 
 class Root extends React.Component {
   render() {

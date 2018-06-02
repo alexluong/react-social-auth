@@ -66,9 +66,9 @@ class Modal extends React.Component {
             <Transition
               from={{ ...this.opacity(), yTranslate: Y_TRANSLATE }}
               enter={{ ...this.opacity(overlayOpacity, 1), yTranslate: 0 }}
-              leave={{ ...this.opacity(0.2), yTranslate: Y_TRANSLATE }}
+              leave={{ ...this.opacity(), yTranslate: Y_TRANSLATE }}
               impl={TimingAnimation}
-              config={{ duration: 300, easing: Easing.linear }}
+              config={{ duration: 200, easing: Easing.linear }}
               onRest={this.onRest}
               native
             >
