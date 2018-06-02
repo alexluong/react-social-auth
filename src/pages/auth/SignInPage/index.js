@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { config } from 'config';
 import { signIn } from 'modules/auth';
@@ -24,7 +25,7 @@ class SignInPage extends React.Component {
         <LinkButton inline={false} href={config.facebook.start}>
           Sign In with Facebook
         </LinkButton>
-        <LinkButton inline={false} isRRLink to="/sign-up">
+        <LinkButton inline={false} tag={Link} to="/sign-up">
           Don't have an account? Sign up.
         </LinkButton>
       </React.Fragment>

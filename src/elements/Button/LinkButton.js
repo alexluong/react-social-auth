@@ -1,34 +1,32 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const styles = css`
+import { transformTag } from '../helpers';
+
+const propTypes = {
+  inline: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+const defaultProps = {
+  inline: true,
+  tag: 'a',
+};
+
+const StyledLinkButton = styled(({ tag, children, inline, ...props }) =>
+  transformTag({ tag, children, ...props }),
+)`
   color: mediumaquamarine;
   display: ${props => (props.inline ? 'inline-block' : 'block')};
+  ${props => console.log(props)};
 `;
 
-const StyledALinkButton = styled.a`
-  ${styles};
-`;
+const LinkButton = ({ tag, inline, ...props }) => (
+  <StyledLinkButton tag={tag} inline={inline} {...props} />
+);
 
-const StyledRRLinkButton = styled(({ inline, ...props }) => (
-  <Link {...props} />
-))`
-  ${styles};
-`;
-
-const LinkButton = ({ isRRLink, ...props }) => {
-  const returnElement = isRRLink ? (
-    <StyledRRLinkButton {...props} />
-  ) : (
-    <StyledALinkButton {...props} />
-  );
-  return returnElement;
-};
-
-LinkButton.defaultProps = {
-  isRRLink: false,
-  inline: true,
-};
+LinkButton.propTypes = propTypes;
+LinkButton.defaultProps = defaultProps;
 
 export { LinkButton };
