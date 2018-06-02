@@ -1,7 +1,7 @@
 import './base';
 
-import Color from './Color';
+import color from './color';
 import elevation from './elevation';
 import position from './position';
 
-export { Color, elevation, position };
+export { color, elevation, position };

@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Spring } from 'react-spring';
 
-import { Color } from 'config/theme';
-
-import Modal from 'elements/Modal';
-import Toggle from 'elements/Toggle';
+import { Color } from 'utilities';
+import { Modal, Toggle, Typography } from 'elements';
 
 class Stuff extends React.Component {
   render() {
     const message = 'Hello from the other sidee';
     return (
       <div>
-        <h1>Stuff</h1>
+        <Typography tag="h1" color="secondary">
+          Hi theree
+        </Typography>
         <Link to="/facebook">Facebook</Link>
         <Toggle>
           {({ on, toggle, close }) => (

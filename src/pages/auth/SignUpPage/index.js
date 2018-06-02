@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { signUp } from 'modules/auth';
 
 import SignUpForm from './SignUpForm';
-import { LinkButton } from 'elements/Button';
+import { LinkButton } from 'elements';
 
 class SignUpPage extends React.Component {
   onSubmit = values => {

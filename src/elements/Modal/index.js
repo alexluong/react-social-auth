@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-spring';
 import { TimingAnimation, Easing } from 'react-spring/dist/addons.cjs';
 
-import Portal from '../Portal';
+import { Portal } from '../Portal';
 import ModalComponent from './ModalComponent';
 
 class Modal extends React.Component {
@@ -89,4 +89,4 @@ class Modal extends React.Component {
   }
 }
 
-export default Modal;
+export { Modal };

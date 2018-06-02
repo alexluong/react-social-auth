@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-import { Color, elevation, position } from 'config/theme';
+import { elevation, position } from 'config/theme';
+import { Color } from 'utilities';
 
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 const ModalComponent = ({
   cardOpacity,

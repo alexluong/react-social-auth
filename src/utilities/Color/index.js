@@ -1,4 +1,4 @@
-import COLORS from './constants';
+import { color as COLORS } from 'config/theme';
 
 class Color {
   color = '';
@@ -22,4 +22,4 @@ class Color {
   }
 }
 
-export default Color;
+export { Color };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Color } from 'config/theme';
+import { Color } from 'utilities';
 
 // Icons
 import CloseIcon from './CloseIcon';
@@ -37,4 +37,4 @@ class Icon extends React.Component {
   }
 }
 
-export default Icon;
+export { Icon };
