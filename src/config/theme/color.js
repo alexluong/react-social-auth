@@ -2,7 +2,7 @@ const COLORS = {
   text: '#000',
   background: '#fff',
   primary: 'teal',
-  secondary: 'slateblue',
+  secondary: 'pink',
   default: '#000',
   white: '#fff',
 };

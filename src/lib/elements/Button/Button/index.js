@@ -2,29 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-import { transformTag } from '../../helpers';
-import { Color } from '../../utilities';
+import { transformTag } from '../../../helpers';
+import { Color } from '../../../utilities';
 
-class Button extends React.Component {
-  static propTypes = {
-    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    onClick: PropTypes.func,
-    color: PropTypes.string,
-    outline: PropTypes.bool,
-    inline: PropTypes.bool,
-  };
+const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  onClick: PropTypes.func,
+  color: PropTypes.string,
+  outline: PropTypes.bool,
+  inline: PropTypes.bool,
+};
 
-  static defaultProps = {
-    tag: 'button',
-    color: 'text',
-    outline: false,
-    inline: false,
-  };
+const defaultProps = {
+  tag: 'button',
+  color: 'text',
+  outline: false,
+  inline: false,
+};
 
-  render() {
-    return <StyledButton {...this.props} />;
-  }
-}
+const Button = props => <StyledButton {...props} />;
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export { Button };
 

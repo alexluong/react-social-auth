@@ -3,16 +3,13 @@ import styled from 'styled-components';
 
 import { Button } from './Button';
 
-class LinkButton extends React.Component {
-  static defaultProps = {
-    tag: 'a',
-    outline: true,
-  };
+const defaultProps = {
+  tag: 'a',
+  outline: true,
+};
 
-  render() {
-    return <StyledLinkButton {...this.props} />;
-  }
-}
+const LinkButton = props => <StyledLinkButton {...props} />;
+LinkButton.defaultProps = defaultProps;
 
 export { LinkButton };
 

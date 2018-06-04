@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-info": "^3.4.6",
     "axios": "^0.18.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -10,16 +11,26 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "react-spring": "^5.3.4",
+    "react-spring": "^5.3.8",
     "redux": "^4.0.0",
     "redux-form": "^7.3.0",
-    "redux-thunk": "^2.2.0",
-    "styled-components": "^3.2.6"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.6",
+    "@storybook/addon-links": "^3.4.6",
+    "@storybook/addons": "^3.4.6",
+    "@storybook/react": "^3.4.6",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0"
   }
 }
