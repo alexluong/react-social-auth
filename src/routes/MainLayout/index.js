@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../Layout';
+import { Layout } from 'lib';
 
 const Container = styled.div`
   width: 80vw;

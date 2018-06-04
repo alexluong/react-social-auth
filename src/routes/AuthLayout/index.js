@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../Layout';
-
-import { Center } from 'lib';
+import { Layout, Center } from 'lib';
 
 const Page = styled(Center)`
   flex-direction: column;

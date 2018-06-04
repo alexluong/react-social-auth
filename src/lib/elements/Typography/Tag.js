@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { transformTag } from '../helpers';
+import { transformTag } from '../../helpers';
 import { Color } from '../../utilities';
 
 const Tag = styled(transformTag)`
