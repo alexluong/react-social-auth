@@ -23,4 +23,9 @@ storiesOf('Buttons/Button', module)
     <Button onClick={action('clicked')} color="primary" outline>
       Button
     </Button>
+  ))
+  .add('with backgroundColor', () => (
+    <Button onClick={action('clicked')} backgroundColor="primary">
+      Button
+    </Button>
   ));

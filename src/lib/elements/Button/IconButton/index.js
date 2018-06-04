@@ -10,11 +10,11 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   inline: PropTypes.bool,
-  /** props for Icon */
+  /** Icon's prop */
   color: PropTypes.string,
-  /** props for Icon */
+  /** Icon's prop */
   width: PropTypes.number,
-  /** props for Icon */
+  /** Icon's prop */
   height: PropTypes.number,
 };
 
@@ -22,8 +22,6 @@ const defaultProps = {
   inline: true,
   color: 'text',
   tag: 'button',
-  color: 'text',
-  inline: false,
 };
 
 const IconButton = ({ name, color, width, height, ...props }) => (

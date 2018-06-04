@@ -8,14 +8,16 @@ import { Color } from '../../../utilities';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
+  type: PropTypes.oneOf(['primary', 'default', 'none']),
   color: PropTypes.string,
+  backgroundColor: PropTypes.string,
   outline: PropTypes.bool,
   inline: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'button',
-  color: 'text',
+  type: 'default',
   outline: false,
   inline: false,
 };
@@ -26,21 +28,33 @@ Button.defaultProps = defaultProps;
 
 export { Button };
 
-const outline = css`
-  color: ${props => new Color(props.color).get()};
-  border-color: ${props => new Color(props.color).get()};
-  background-color: transparent;
-`;
+const type = css`
+  ${({ type, outline }) => {
+    const colorSet = new Color().type(type);
 
-const notOutline = css`
-  color: ${new Color('white').get()};
-  border-color: ${props => new Color(props.color).get()};
-  background-color: ${props => new Color(props.color).get()};
+    if (outline) {
+      return `
+        color: ${colorSet.border};
+        border-color: ${colorSet.border};
+        background-color: transparent;
+      `;
+    } else {
+      return `
+        color: ${colorSet.text};
+        border-color: ${colorSet.border};
+        background-color: ${colorSet.background};
+      `;
+    }
+  }};
 `;
 
 const buttonCss = css`
-  ${props => (props.outline ? outline : notOutline)};
+  ${props => props.type !== 'none' && type};
+  ${({ color }) => color && `color: ${new Color(color).get()}`};
+  ${({ backgroundColor }) =>
+    backgroundColor && `background-color: ${new Color(backgroundColor).get()}`};
   display: ${props => (props.inline ? 'inline-block' : 'block')};
+
   border-width: 2px;
   border-style: solid;
   cursor: pointer;

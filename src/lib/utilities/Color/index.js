@@ -20,6 +20,14 @@ class Color {
     }
     return COLORS[color];
   }
+
+  type(type = 'default') {
+    return {
+      text: COLORS['white'],
+      border: COLORS['black'],
+      background: COLORS['black'],
+    };
+  }
 }
 
 export { Color };
