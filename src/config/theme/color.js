@@ -4,6 +4,7 @@ const COLORS = {
   primary: 'teal',
   secondary: 'slateblue',
   default: '#000',
+  white: '#fff',
 };
 
 export default COLORS;

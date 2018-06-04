@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Layout from '../Layout';
 
-import { Center } from 'elements/Container';
+import { Center } from 'lib';
 
 const Page = styled(Center)`
   flex-direction: column;

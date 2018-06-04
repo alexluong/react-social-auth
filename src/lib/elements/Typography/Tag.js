@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { transformTag } from '../helpers';
-import { Color } from 'utilities';
+import { Color } from '../../utilities';
 
 const Tag = styled(transformTag)`
   color: ${props => new Color(props.color).get()};

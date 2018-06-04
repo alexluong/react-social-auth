@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 
 import { elevation, position } from 'config/theme';
 
-import { Color } from 'utilities';
+import { Color } from '../../utilities';
 import { Icon } from '../Icon';
 
 const propTypes = {

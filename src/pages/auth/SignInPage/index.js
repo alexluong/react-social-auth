@@ -7,7 +7,7 @@ import { signIn } from 'modules/auth';
 import { SIGN_UP } from 'routes';
 import SignInForm from './SignInForm';
 
-import { LinkButton } from 'elements';
+import { LinkButton } from 'lib';
 
 class SignInPage extends React.Component {
   onSubmit = values => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Color } from 'utilities';
+import { Color } from '../../utilities';
 
 // Icons
 import CloseIcon from './CloseIcon';

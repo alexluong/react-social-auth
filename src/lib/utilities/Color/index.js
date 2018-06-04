@@ -3,7 +3,7 @@ import { color as COLORS } from 'config/theme';
 class Color {
   color = '';
 
-  constructor(color = 'black') {
+  constructor(color = 'default') {
     this.color = color;
   }
 

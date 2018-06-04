@@ -2,14 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Spring } from 'react-spring';
 
-import { Color } from 'utilities';
-import { Modal, Toggle, Typography } from 'elements';
+import { Color, Modal, Toggle, Typography, LinkButton, IconButton } from 'lib';
 
 class Stuff extends React.Component {
   render() {
     const message = 'Hello from the other sidee';
     return (
       <div>
+        <LinkButton
+          onClick={() => console.log('hello')}
+          color="primary"
+          tag={Link}
+          to="/facebook"
+        >
+          Clickk
+        </LinkButton>
+
+        <IconButton name="close" />
         <Typography tag="h1" color="secondary">
           Hi theree
         </Typography>
