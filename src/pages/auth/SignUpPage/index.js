@@ -31,4 +31,7 @@ const mapStateToProps = state => {
   return { errorMessage: state.auth.errorMessage };
 };
 
-export default connect(mapStateToProps, { signUp })(SignUpPage);
+export default connect(
+  mapStateToProps,
+  { signUp },
+)(SignUpPage);

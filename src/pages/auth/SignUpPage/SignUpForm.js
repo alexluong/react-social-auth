@@ -58,4 +58,9 @@ class SignUpForm extends React.Component {
 
 export default reduxForm({
   form: 'sign-up',
-})(connect(null, { clearErrorMessage })(SignUpForm));
+})(
+  connect(
+    null,
+    { clearErrorMessage },
+  )(SignUpForm),
+);

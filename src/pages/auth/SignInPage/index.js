@@ -38,4 +38,7 @@ const mapStateToProps = state => {
   return { errorMessage: state.auth.errorMessage };
 };
 
-export default connect(mapStateToProps, { signIn })(SignInPage);
+export default connect(
+  mapStateToProps,
+  { signIn },
+)(SignInPage);

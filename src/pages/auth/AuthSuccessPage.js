@@ -35,4 +35,7 @@ class AuthSuccessPage extends React.Component {
   }
 }
 
-export default connect(null, { getUser })(AuthSuccessPage);
+export default connect(
+  null,
+  { getUser },
+)(AuthSuccessPage);

@@ -1,31 +1,56 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_AUTH_ERROR } from './types';
+import {
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_IN_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_OUT,
+  AUTH_ERROR,
+  CLEAR_AUTH_ERROR,
+} from './types';
 
-const reducer = (state = {}, action) => {
+const initialState = {
+  requesting: false,
+  successful: false,
+  authenticated: false,
+  error: '',
+};
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case AUTH_USER:
+    case SIGN_UP_REQUEST:
+    case SIGN_IN_REQUEST:
       return {
-        ...state,
-        user: action.payload,
-        authorized: true,
-        errorMessage: null
+        requesting: true,
+        successful: false,
+        authenticated: false,
+        error: '',
       };
-    case UNAUTH_USER:
+    case SIGN_UP_SUCCESS:
+    case SIGN_IN_SUCCESS:
       return {
-        ...state,
-        authorized: false,
-        errorMessage: null
+        requesting: false,
+        successful: true,
+        authenticated: true,
+        error: '',
+      };
+    case SIGN_OUT:
+      return {
+        requesting: false,
+        successful: true,
+        authenticated: false,
+        error: '',
       };
     case AUTH_ERROR:
       return {
-        ...state,
-        authorized: false,
-        errorMessage: action.payload
+        requesting: false,
+        successful: false,
+        authenticated: false,
+        error: action.payload,
       };
     case CLEAR_AUTH_ERROR:
       return {
         ...state,
-        errorMessage: null
-      }
+        error: '',
+      };
     default:
       return { ...state };
   }

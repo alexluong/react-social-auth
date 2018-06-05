@@ -1,4 +1,8 @@
-export const AUTH_USER        = '[auth] sign in';
-export const UNAUTH_USER      = '[auth] sign out';
-export const AUTH_ERROR       = '[auth] error';
-export const CLEAR_AUTH_ERROR = '[auth] clear error';
+export const SIGN_IN_REQUEST = '[AUTH] SIGN IN REQUEST';
+export const SIGN_IN_SUCCESS = '[AUTH] SIGN IN SUCCESS';
+export const SIGN_UP_REQUEST = '[AUTH] SIGN UP REQUEST';
+export const SIGN_UP_SUCCESS = '[AUTH] SIGN UP SUCCESS';
+
+export const AUTH_ERROR = '[AUTH] REQUEST ERROR';
+export const CLEAR_AUTH_ERROR = '[AUTH] CLEAR ERROR';
+export const SIGN_OUT = '[AUTH] SIGN OUT';

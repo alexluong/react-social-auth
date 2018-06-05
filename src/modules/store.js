@@ -1,19 +1,16 @@
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import { reducer as formReducer } from 'redux-form';
-import authReducer from 'modules/auth';
+import sagas from './sagas';
+import reducers from './reducers';
 
-const reducers = combineReducers({
-  form: formReducer,
-  auth: authReducer,
-});
-
+const sagaMiddleware = createSagaMiddleware();
 const enhancers = compose(
-  applyMiddleware(thunk),
+  applyMiddleware(sagaMiddleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 );
 
 const store = createStore(reducers, {}, enhancers);
+sagaMiddleware.run(sagas);
 
 export default store;

@@ -1,26 +1,43 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CLEAR_AUTH_ERROR } from './types';
+import {
+  SIGN_IN_REQUEST,
+  SIGN_UP_REQUEST,
+  SIGN_OUT,
+  AUTH_ERROR,
+  CLEAR_AUTH_ERROR,
+} from './types';
 
-const signIn = user => ({
-  type: AUTH_USER,
-  payload: user
+const getUser = () => ({
+  type: SIGN_IN_REQUEST,
+});
+
+const signIn = ({ username, password }) => ({
+  type: SIGN_IN_REQUEST,
+  payload: {
+    username,
+    password,
+  },
+});
+
+const signUp = ({ username, email, password }) => ({
+  type: SIGN_UP_REQUEST,
+  payload: {
+    username,
+    email,
+    password,
+  },
 });
 
 const signOut = () => ({
-  type: UNAUTH_USER
+  type: SIGN_OUT,
 });
 
 const authError = error => ({
   type: AUTH_ERROR,
-  payload: error
+  payload: error,
 });
 
-const clearError = () => ({
-  type: CLEAR_AUTH_ERROR
+const clearErrorMessage = () => ({
+  type: CLEAR_AUTH_ERROR,
 });
 
-export {
-  signIn,
-  signOut,
-  authError,
-  clearError
-};
+export { getUser, signIn, signUp, signOut, authError, clearErrorMessage };

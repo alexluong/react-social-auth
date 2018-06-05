@@ -19,4 +19,7 @@ class SignOutPage extends React.Component {
   }
 }
 
-export default connect(null, { signOut })(SignOutPage);
+export default connect(
+  null,
+  { signOut },
+)(SignOutPage);
