@@ -13,9 +13,7 @@ const propTypes = {
   /** Icon's prop */
   color: PropTypes.string,
   /** Icon's prop */
-  width: PropTypes.number,
-  /** Icon's prop */
-  height: PropTypes.number,
+  size: PropTypes.number,
 };
 
 const defaultProps = {
@@ -24,9 +22,9 @@ const defaultProps = {
   tag: 'button',
 };
 
-const IconButton = ({ name, color, width, height, ...props }) => (
+const IconButton = ({ name, color, size, ...props }) => (
   <StyledIconButton {...props} outline>
-    <Icon name="close" color={color} width={width} height={height} />
+    <Icon name="close" color={color} size={size} />
   </StyledIconButton>
 );
 

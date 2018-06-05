@@ -8,7 +8,7 @@ const getUser = token => {
   return async dispatch => {
     try {
       const response = await axios.get(`${SERVER_URI}/user/current`, {
-        'headers': {'authorization': token}
+        headers: { authorization: token },
       });
       dispatch(actions.signIn(response.data.user));
     } catch (error) {
@@ -20,8 +20,11 @@ const getUser = token => {
 const signIn = ({ username, password }) => {
   return async dispatch => {
     try {
-      const response = await axios.post(`${SERVER_URI}/auth/local/signin`, { username, password });
-      const token    = response.data.token;
+      const response = await axios.post(`${SERVER_URI}/auth/local/signin`, {
+        username,
+        password,
+      });
+      const token = response.data.token;
       saveAccessToken(token);
       history.push('/');
       dispatch(getUser(token));
@@ -34,7 +37,11 @@ const signIn = ({ username, password }) => {
 const signUp = ({ username, email, password }) => {
   return async dispatch => {
     try {
-      await axios.post(`${SERVER_URI}/auth/local/signup`, { username, email, password });
+      await axios.post(`${SERVER_URI}/auth/local/signup`, {
+        username,
+        email,
+        password,
+      });
       history.push('/sign-in');
     } catch (error) {
       dispatch(actions.authError(error.response.data));
@@ -53,11 +60,4 @@ const authError = error => actions.authError(error);
 
 const clearErrorMessage = () => actions.clearError();
 
-export {
-  getUser,
-  signIn,
-  signUp,
-  signOut,
-  authError,
-  clearErrorMessage
-};
+export { getUser, signIn, signUp, signOut, authError, clearErrorMessage };

@@ -10,26 +10,21 @@ class Icon extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
+    /** px value */
+    size: PropTypes.number,
   };
 
   static defaultProps = {
-    color: new Color('text').get(),
-    width: 16,
-    height: 16,
+    color: 'default',
+    size: 16,
   };
 
   render() {
-    const { name, color, width, height } = this.props;
-    const colorInstance = new Color(color);
-    const renderedColor = colorInstance.exist() ? colorInstance.get() : color;
+    const { name, color, size } = this.props;
 
     switch (name) {
       case 'close':
-        return (
-          <CloseIcon color={renderedColor} width={width} height={height} />
-        );
+        return <CloseIcon color={new Color(color).get()} size={size} />;
       default:
         console.error(`ERROR: ${name} is not an icon`);
         return <span>Error</span>;

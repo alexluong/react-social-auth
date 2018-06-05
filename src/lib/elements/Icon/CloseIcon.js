@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CloseIcon = ({ color, width, height }) => (
+const CloseIcon = ({ color, size }) => (
   <svg
     x="0px"
     y="0px"
-    width={`${width}px`}
-    height={`${height}px`}
+    width={`${size}px`}
+    height={`${size}px`}
     viewBox="0 0 31.11 31.11"
     enableBackground="new 0 0 31.11 31.11"
   >
