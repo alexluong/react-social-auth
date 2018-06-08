@@ -1,4 +1,5 @@
 import { color as COLORS } from 'config/theme';
+import { Validation } from '../Validation';
 
 class Color {
   color = '';
@@ -7,18 +8,29 @@ class Color {
     this.color = color;
   }
 
-  exist() {
-    return !(typeof COLORS[this.color] === 'undefined');
+  set(color) {
+    this.color = color;
   }
 
-  get() {
-    const { color } = this;
-    const returnColor = COLORS[color];
-    if (!returnColor) {
-      console.error(`ERROR: ${color} is not a color name.`);
-      return COLORS['default'];
+  get(color) {
+    if (!color) {
+      color = this.color;
     }
-    return COLORS[color];
+    if (COLORS[color]) {
+      return COLORS[color];
+    } else {
+      const validation = new Validation();
+      if (
+        validation.isHexColor(color) ||
+        validation.isRGBAColor(color) ||
+        validation.isHSVColor(color)
+      ) {
+        return color;
+      }
+    }
+
+    console.error(`ERROR: ${color} is not a color name.`);
+    return COLORS['default'];
   }
 
   type(type = 'default') {
