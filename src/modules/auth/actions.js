@@ -2,12 +2,16 @@ import {
   SIGN_IN_REQUEST,
   SIGN_UP_REQUEST,
   SIGN_OUT,
+  SOCIAL_SIGN_IN,
   AUTH_ERROR,
   CLEAR_AUTH_ERROR,
 } from './types';
 
-const getUser = () => ({
-  type: SIGN_IN_REQUEST,
+const socialSignIn = token => ({
+  type: SOCIAL_SIGN_IN,
+  payload: {
+    token,
+  },
 });
 
 const signIn = ({ username, password }) => ({
@@ -33,11 +37,13 @@ const signOut = () => ({
 
 const authError = error => ({
   type: AUTH_ERROR,
-  payload: error,
+  payload: {
+    error,
+  },
 });
 
 const clearErrorMessage = () => ({
   type: CLEAR_AUTH_ERROR,
 });
 
-export { getUser, signIn, signUp, signOut, authError, clearErrorMessage };
+export { signIn, signUp, signOut, socialSignIn, authError, clearErrorMessage };

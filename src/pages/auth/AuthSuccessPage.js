@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getUser } from 'modules/auth';
-import history from 'routes/history';
-import { setItem } from 'config';
+import { socialSignIn } from 'modules/auth';
 
 class AuthSuccessPage extends React.Component {
   state = {
@@ -11,18 +9,16 @@ class AuthSuccessPage extends React.Component {
     success: false,
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     const hash = this.props.location.hash;
     if (hash.length === 0) {
       this.setState({ checked: true });
       return;
     }
 
-    const accessToken = hash.slice(1);
-    setItem('accessToken', accessToken);
-    this.props.getUser(accessToken);
-    history.push('/');
-  }
+    const token = hash.slice(1);
+    this.props.socialSignIn(token);
+  };
 
   render() {
     const { checked, success } = this.state;
@@ -37,5 +33,5 @@ class AuthSuccessPage extends React.Component {
 
 export default connect(
   null,
-  { getUser },
+  { socialSignIn },
 )(AuthSuccessPage);

@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
         requesting: false,
         successful: false,
         authenticated: false,
-        error: action.payload,
+        error: action.payload.error,
       };
     case CLEAR_AUTH_ERROR:
       return {
