@@ -1,63 +1,48 @@
-import axios from 'axios';
-import {
-  all,
-  take,
-  fork,
-  cancel,
-  call,
-  put,
-  cancelled,
-} from 'redux-saga/effects';
+import { takeLatest, call, put, take } from 'redux-saga/effects';
 
-import { SERVER_URI } from 'config';
-import history from 'routes/history';
 import { SIGN_IN_REQUEST, SIGN_IN_SUCCESS, AUTH_ERROR } from '../types';
+import { SERVER_URI } from 'config';
+import { getUser, GET_USER_SUCCESS } from 'modules/user';
+import { setItem } from 'config/localStorage';
+import { postAPI } from 'modules/helpers';
+import history from 'routes/history';
 
-async function signInAPI({ username, password }) {
-  return await axios.post(`${SERVER_URI}/auth/local/signin`, {
-    username,
-    password,
-  });
-}
-
-function* signIn({ username, password }) {
-  let token;
+function* signIn(action) {
   try {
-    const response = yield call(signInAPI, { username, password });
-    token = response.data.token;
+    const {
+      payload: { username, password },
+    } = action;
 
-    // yield put(setClient(token));
+    //* Sign in
+    const response = yield call(postAPI, `${SERVER_URI}/auth/local/signin`, {
+      username,
+      password,
+    });
+    const token = response.data.token;
+
+    //* Get user
+    yield put(getUser(token));
+    yield take(GET_USER_SUCCESS);
+
     yield put({
       type: SIGN_IN_SUCCESS,
     });
 
-    // set a stringified version of our token to localstorage on our domain
-    // localStorage.setItem('token', JSON.stringify(token));
+    //* Save token to localStorage
+    setItem('token', token);
 
     history.push('/');
   } catch (error) {
+    // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
     yield put({
       type: AUTH_ERROR,
       payload: error.response.data,
     });
-  } finally {
-    if (yield cancelled()) {
-      history.push('/login');
-    }
   }
-  return token;
 }
 
 function* signInWatcher() {
-  while (1) {
-    const {
-      payload: { username, password },
-    } = yield take(SIGN_IN_REQUEST);
-    const task = yield fork(signIn, { username, password });
-    // const action = yield take([CLIENT_UNSET, LOGIN_ERROR])
-    // if (action.type === CLIENT_UNSET) yield cancel(task)
-    // yield call(logout)
-  }
+  yield takeLatest(SIGN_IN_REQUEST, signIn);
 }
 
 export default signInWatcher;

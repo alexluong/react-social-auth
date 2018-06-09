@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getUser } from 'modules/auth';
 import history from 'routes/history';
-import { saveAccessToken } from 'config';
+import { setItem } from 'config';
 
 class AuthSuccessPage extends React.Component {
   state = {
@@ -19,7 +19,7 @@ class AuthSuccessPage extends React.Component {
     }
 
     const accessToken = hash.slice(1);
-    saveAccessToken(accessToken);
+    setItem('accessToken', accessToken);
     this.props.getUser(accessToken);
     history.push('/');
   }

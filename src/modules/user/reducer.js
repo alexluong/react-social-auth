@@ -1,1 +1,26 @@
-export default 1;
+import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_ERROR } from './types';
+
+const initialState = {
+  user: null,
+  error: '',
+};
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_USER_REQUEST:
+      return { ...state };
+    case GET_USER_SUCCESS:
+      return {
+        error: '',
+        user: action.payload.user,
+      };
+    case GET_USER_ERROR:
+      return {
+        error: action.payload.error,
+        user: null,
+      };
+    default:
+      return { ...state };
+  }
+};
+
+export default reducer;

@@ -1,28 +1,39 @@
-export const saveAccessToken = token => {
+const getItem = field => {
   try {
-    localStorage.setItem('accessToken', token);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getAccessToken = () => {
-  try {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken === null) {
+    const item = localStorage.getItem(field);
+    if (item === null) {
       return undefined;
     }
-    return accessToken;
+    return item;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return undefined;
   }
 };
 
-export const removeAccessToken = () => {
+const setItem = (field, item) => {
   try {
-    localStorage.removeItem('accessToken');
+    const stringifiedItem = JSON.stringify(item);
+    localStorage.setItem(field, stringifiedItem);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
+
+const removeItem = field => {
+  try {
+    localStorage.removeItem(field);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const clearLocalStorage = () => {
+  try {
+    localStorage.clear();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { getItem, setItem, removeItem, clearLocalStorage };

@@ -9,12 +9,7 @@ class Stuff extends React.Component {
     const message = 'Hello from the other sidee';
     return (
       <div>
-        <LinkButton
-          onClick={() => console.log('hello')}
-          color="primary"
-          tag={Link}
-          to="/facebook"
-        >
+        <LinkButton color="primary" tag={Link} to="/sign-out">
           Clickk
         </LinkButton>
 

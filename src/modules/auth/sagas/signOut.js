@@ -1,12 +1,10 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 import { SIGN_OUT } from '../types';
+import { clearLocalStorage } from 'config/localStorage';
 
-function* signOut() {
-  //* Dispatch the CLIENT_UNSET action
-  // yield put(unsetClient());
-  //* Clear localStorage
-  // localStorage.clear();
+function signOut() {
+  clearLocalStorage();
 }
 
 function* signOutWatcher() {

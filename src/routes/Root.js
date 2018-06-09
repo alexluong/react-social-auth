@@ -21,7 +21,7 @@ import Facebook from 'pages/Facebook';
 import NotFoundPage from 'pages/NotFoundPage';
 
 // Misc
-import checkAuth from 'hoc/checkAuth';
+import withAuthentication from 'hoc/withAuthentication';
 import history from './history';
 import * as routes from './';
 
@@ -34,14 +34,20 @@ class Root extends React.Component {
             <Route path={routes.SIGN_OUT} component={SignOutPage} />
             <AuthLayout
               path={routes.SIGN_IN}
-              component={checkAuth(SignInPage, true)}
+              component={withAuthentication(true)(SignInPage)}
             />
             <AuthLayout
               path={routes.SIGN_UP}
-              component={checkAuth(SignUpPage, true)}
+              component={withAuthentication(true)(SignUpPage)}
             />
-            <MainLayout path={routes.HOME} component={checkAuth(Stuff)} />
-            <MainLayout path="/facebook" component={checkAuth(Facebook)} />
+            <MainLayout
+              path={routes.HOME}
+              component={withAuthentication()(Stuff)}
+            />
+            <MainLayout
+              path="/facebook"
+              component={withAuthentication()(Facebook)}
+            />
             <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />
             {/* OAuth success */}
             <Redirect exact from="/" to={routes.HOME} />
