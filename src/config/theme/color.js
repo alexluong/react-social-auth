@@ -2,7 +2,7 @@ const COLORS = {
   text: '#000',
   background: '#fff',
   primary: 'teal',
-  secondary: 'pink',
+  secondary: 'rebeccapurple',
   default: '#000',
   trasparent: 'transparent',
   white: '#fff',
