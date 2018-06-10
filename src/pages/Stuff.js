@@ -29,8 +29,6 @@ class Stuff extends React.Component {
           )}
         </Toggle>
 
-        <hr />
-
         <Toggle>
           {({ on, toggle }) => (
             <Spring

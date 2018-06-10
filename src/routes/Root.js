@@ -8,8 +8,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import store from 'modules/store';
 
 // Layouts
-import MainLayout from 'routes/MainLayout';
 import AuthLayout from 'routes/AuthLayout';
+import { SidebarLayout } from 'lib';
 
 // Pages
 import AuthSuccessPage from 'pages/auth/AuthSuccessPage';
@@ -40,11 +40,11 @@ class Root extends React.Component {
               path={routes.SIGN_UP}
               component={withAuthentication(true)(SignUpPage)}
             />
-            <MainLayout
+            <SidebarLayout
               path={routes.HOME}
               component={withAuthentication()(Stuff)}
             />
-            <MainLayout
+            <SidebarLayout
               path="/facebook"
               component={withAuthentication()(Facebook)}
             />

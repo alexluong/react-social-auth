@@ -25,4 +25,8 @@ injectGlobal`
     line-height: 2;
     color: #000;
   }
+  #root {
+    width: 100%;
+    height: 100%;
+  }
 `;
