@@ -4,7 +4,7 @@ const getItem = field => {
     if (item === null) {
       return undefined;
     }
-    return item;
+    return JSON.parse(item);
   } catch (error) {
     console.error(error);
     return undefined;
