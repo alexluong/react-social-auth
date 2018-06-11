@@ -22,7 +22,6 @@ const StyledSidebarLayout = styled.div`
   height: 100%;
   display: grid;
   grid-template-areas: 'sidebar main';
-  grid-template-columns: 20rem auto;
 `;
 
 const StyledSidebar = styled(Sidebar)`

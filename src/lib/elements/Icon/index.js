@@ -5,6 +5,7 @@ import { Color } from '../../utilities';
 
 // Icons
 import CloseIcon from './CloseIcon';
+import ArrowLeftIcon from './ArrowLeftIcon';
 
 class Icon extends React.Component {
   static propTypes = {
@@ -20,11 +21,21 @@ class Icon extends React.Component {
   };
 
   render() {
-    const { name, color, size } = this.props;
+    const { name, color, size, ...props } = this.props;
 
     switch (name) {
       case 'close':
-        return <CloseIcon color={new Color(color).get()} size={size} />;
+        return (
+          <CloseIcon {...props} color={new Color(color).get()} size={size} />
+        );
+      case 'arrow-left':
+        return (
+          <ArrowLeftIcon
+            {...props}
+            color={new Color(color).get()}
+            size={size}
+          />
+        );
       default:
         console.error(`ERROR: ${name} is not an icon`);
         return <span>Error</span>;

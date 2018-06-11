@@ -1,7 +1,8 @@
 import React from 'react';
 
-const CloseIcon = ({ color, size }) => (
+const CloseIcon = ({ color, size, ...props }) => (
   <svg
+    {...props}
     x="0px"
     y="0px"
     width={`${size}px`}

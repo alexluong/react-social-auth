@@ -24,7 +24,7 @@ const defaultProps = {
 
 const IconButton = ({ name, color, size, ...props }) => (
   <StyledIconButton {...props} outline>
-    <Icon name="close" color={color} size={size} />
+    <Icon name={name} color={color} size={size} />
   </StyledIconButton>
 );
 
