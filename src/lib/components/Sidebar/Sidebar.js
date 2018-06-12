@@ -37,6 +37,7 @@ const Sidebar = ({ open, onControlClick, ...props }) => {
             )}
           </Route>
         </NavLink>
+        <NavLink to="/upload">Upload</NavLink>
       </LinkContainer>
     </Container>
   );

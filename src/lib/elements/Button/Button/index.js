@@ -8,7 +8,7 @@ import { Color } from '../../../utilities';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['primary', 'default', 'none']),
+  colorType: PropTypes.oneOf(['primary', 'default', 'none']),
   color: PropTypes.string,
   backgroundColor: PropTypes.string,
   outline: PropTypes.bool,
@@ -17,7 +17,7 @@ const propTypes = {
 
 const defaultProps = {
   tag: 'button',
-  type: 'default',
+  colorType: 'default',
   outline: false,
   inline: false,
 };
@@ -28,9 +28,9 @@ Button.defaultProps = defaultProps;
 
 export { Button };
 
-const type = css`
-  ${({ type, outline }) => {
-    const colorSet = new Color().type(type);
+const colorType = css`
+  ${({ colorType, outline }) => {
+    const colorSet = new Color().type(colorType);
 
     if (outline) {
       return `
@@ -49,7 +49,7 @@ const type = css`
 `;
 
 const buttonCss = css`
-  ${props => props.type !== 'none' && type};
+  ${props => props.colorType !== 'none' && colorType};
   ${({ color }) => color && `color: ${new Color(color).get()}`};
   ${({ backgroundColor }) =>
     backgroundColor && `background-color: ${new Color(backgroundColor).get()}`};
@@ -66,7 +66,7 @@ const buttonCss = css`
   }
 `;
 
-const StyledButton = styled(({ tag, inline, outline, ...props }) =>
+const StyledButton = styled(({ tag, inline, outline, colorType, ...props }) =>
   transformTag({ tag, ...props }),
 )`
   ${buttonCss};

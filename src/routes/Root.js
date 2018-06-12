@@ -18,6 +18,7 @@ import SignUpPage from 'pages/auth/SignUpPage';
 import SignOutPage from 'pages/auth/SignOutPage';
 import Stuff from 'pages/Stuff';
 import Facebook from 'pages/Facebook';
+import UploadPage from 'pages/UploadPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
 // Misc
@@ -48,6 +49,7 @@ class Root extends React.Component {
               path="/facebook"
               component={withAuthentication()(Facebook)}
             />
+            <Route path={routes.UPLOAD_PAGE} component={UploadPage} />
             <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />
             {/* OAuth success */}
             <Redirect exact from="/" to={routes.HOME} />

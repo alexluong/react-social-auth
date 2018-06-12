@@ -34,11 +34,20 @@ class Color {
   }
 
   type(type = 'default') {
-    return {
-      text: COLORS['white'],
-      border: COLORS['black'],
-      background: COLORS['black'],
-    };
+    switch (type) {
+      case 'primary':
+        return {
+          text: COLORS['white'],
+          border: COLORS['primary'],
+          background: COLORS['primary'],
+        };
+      default:
+        return {
+          text: COLORS['white'],
+          border: COLORS['black'],
+          background: COLORS['black'],
+        };
+    }
   }
 }
 
