@@ -13,41 +13,40 @@ const propTypes = {
   onControlClick: PropTypes.func,
 };
 
-const Sidebar = ({ open, onControlClick, ...props }) => {
-  console.log(open);
-  return (
-    <Container {...props}>
-      <LogoContainer>
-        <div>LOGO</div>
-        <SidebarControl
-          name="arrow-left"
-          color="white"
-          onClick={onControlClick}
-        />
-      </LogoContainer>
-      <LinkContainer>
-        <NavLink to="/home">Hello</NavLink>
-        <NavLink to="/facebook">
-          <Route path="/facebook">
-            {({ match }) => (
-              <React.Fragment>
-                <Icon name="close" color={match ? 'white' : 'primary'} />
-                <Text>Facebook</Text>
-              </React.Fragment>
-            )}
-          </Route>
-        </NavLink>
-        <NavLink to="/upload">Upload</NavLink>
-      </LinkContainer>
-    </Container>
-  );
-};
-Sidebar.propTypes = propTypes;
+const ClosedSidebar = ({
+  isOpen,
+  toggleOpen,
+  opacity,
+  transform,
+  ...props
+}) => (
+  <Container style={{ opacity, transform }} {...props}>
+    <LogoContainer>
+      <div>LOGO</div>
+      <SidebarControl name="arrow-left" color="white" onClick={toggleOpen} />
+    </LogoContainer>
+    <LinkContainer>
+      <NavLink to="/home">Hello</NavLink>
+      <NavLink to="/facebook">
+        <Route path="/facebook">
+          {({ match }) => (
+            <React.Fragment>
+              <Icon name="close" color={match ? 'white' : 'primary'} />
+              <Text>Facebook</Text>
+            </React.Fragment>
+          )}
+        </Route>
+      </NavLink>
+      <NavLink to="/upload">Upload</NavLink>
+    </LinkContainer>
+  </Container>
+);
+ClosedSidebar.propTypes = propTypes;
 
-export default Sidebar;
+export default ClosedSidebar;
 
 const Container = styled.div`
-  width: 20rem;
+  width: 100%;
   height: 100%;
 `;
 
