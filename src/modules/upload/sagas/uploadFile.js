@@ -29,8 +29,9 @@ function* uploadFile({ payload }) {
 
     const fileURL = `https://s3.amazonaws.com/${BUCKET_NAME}/${key}`;
     /**
-     * ! We want to save the key (fileURL) to our database
-     * ! We can now do what we wanna do with the fileURL!!!
+     * We now have the key (file name)
+     * We can either save it or the actual fileURL to our database
+     * And we can do whatever we wanna with the url
      */
 
     yield put({
