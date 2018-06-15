@@ -5,13 +5,9 @@ import { GET_USER_REQUEST, GET_USER_ERROR, GET_USER_SUCCESS } from '../types';
 import { getAPI } from 'modules/helpers';
 import { setItem } from 'config/localStorage';
 
-function* getUser(action) {
+function* getUser() {
   try {
-    const {
-      payload: { token },
-    } = action;
-
-    const response = yield call(getAPI, `${SERVER_URI}/user/current`, token);
+    const response = yield call(getAPI, `${SERVER_URI}/user/current`, true);
     const user = response.data.user;
 
     //* Save user to local storage

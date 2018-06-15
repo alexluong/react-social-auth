@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         requesting: false,
         succussful: true,
         error: '',
-        file: action.payload.file,
+        file: action.payload.fileURL,
       };
     case UPLOAD_FILE_ERROR:
       return {

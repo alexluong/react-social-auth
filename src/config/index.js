@@ -1,11 +1,14 @@
 import auth from './auth';
 import SERVER_URI from './server';
 
+const BUCKET_NAME = process.env.REACT_APP_BUCKET_NAME;
+
 const config = {};
+
+//* Auth
 config.google = auth.google;
 config.facebook = auth.facebook;
 
 export * from './localStorage';
-
-export { SERVER_URI };
+export { SERVER_URI, BUCKET_NAME };
 export { config };

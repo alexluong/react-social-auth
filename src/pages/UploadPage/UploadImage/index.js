@@ -20,9 +20,9 @@ class UploadImage extends React.Component {
   uploadVideo = e => {
     e.preventDefault();
 
-    const { file, name } = this.state;
+    const { file } = this.state;
     if (file) {
-      this.props.uploadFile({ file, name });
+      this.props.uploadFile(file);
     } else {
       this.setState({ error: 'No file is selected' });
     }
@@ -37,40 +37,50 @@ class UploadImage extends React.Component {
 
   render() {
     const { error, name } = this.state;
+    const { imgURL } = this.props;
+
     return (
-      <form method="post" onSubmit={this.uploadVideo}>
-        <input
-          type="file"
-          ref={this.fileInput}
-          accept="image/*"
-          onChange={this.handleFileSelect}
-          style={{ display: 'none' }}
-        />
-        <Button
-          type="button"
-          onClick={() => this.fileInput.current.click()}
-          outline
-        >
-          Select File
-        </Button>
-        <TextInput
-          label="File name"
-          type="text"
-          placeholder="name..."
-          value={name}
-          onChange={e => this.setState({ name: e.target.value })}
-        />
-        {error.length > 0 && <p style={{ color: 'red' }}>{error}</p>}
-        {this.props.uploading && <p>Uploading</p>}
-        <Button type="submit" colorType="primary">
-          Submit
-        </Button>
-      </form>
+      <React.Fragment>
+        <form method="post" onSubmit={this.uploadVideo}>
+          <input
+            type="file"
+            ref={this.fileInput}
+            accept="image/*"
+            onChange={this.handleFileSelect}
+            style={{ display: 'none' }}
+          />
+          <Button
+            type="button"
+            onClick={() => this.fileInput.current.click()}
+            outline
+          >
+            Select File
+          </Button>
+          <TextInput
+            label="File name"
+            type="text"
+            placeholder="name..."
+            value={name}
+            disabled
+          />
+          {error.length > 0 && <p style={{ color: 'red' }}>{error}</p>}
+          {this.props.uploading && <p>Uploading</p>}
+          <Button type="submit" colorType="primary">
+            Submit
+          </Button>
+        </form>
+        {imgURL && (
+          <React.Fragment>
+            <p>{imgURL}</p>
+            <img src={imgURL} alt="uploaded" />
+          </React.Fragment>
+        )}
+      </React.Fragment>
     );
   }
 }
 
 export default connect(
-  state => ({ uploading: state.upload.requesting }),
+  state => ({ uploading: state.upload.requesting, imgURL: state.upload.file }),
   { uploadFile },
 )(UploadImage);

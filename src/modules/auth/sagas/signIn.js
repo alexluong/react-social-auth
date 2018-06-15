@@ -12,17 +12,14 @@ import { setItem } from 'config/localStorage';
 import { postAPI } from 'modules/helpers';
 import history from 'routes/history';
 
-function* callGetUser(token) {
+function* callGetUser() {
   //* Get user
-  yield put(getUser(token));
+  yield put(getUser());
   yield take(GET_USER_SUCCESS);
 
   yield put({
     type: SIGN_IN_SUCCESS,
   });
-
-  //* Save token to localStorage
-  setItem('accessToken', token);
 
   history.push('/');
 }
@@ -46,7 +43,11 @@ function* signIn(action) {
       username,
       password,
     });
+
+    //* Save token to localStorage
     const token = response.data.token;
+    setItem('accessToken', token);
+
     yield call(callGetUser, token);
   } catch (error) {
     // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
