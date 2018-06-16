@@ -14,6 +14,7 @@ const propTypes = {
   yTranslate: PropTypes.object.isRequired,
   closeButton: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  closeOnOverlayClick: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -27,6 +28,7 @@ const ModalComponent = ({
   children,
   closeModal,
   closeButton,
+  closeOnOverlayClick,
 }) => (
   <ModalWrapper>
     <ModalCard
@@ -45,7 +47,7 @@ const ModalComponent = ({
       {children}
     </ModalCard>
     <Background
-      onClick={closeModal}
+      onClick={() => (closeOnOverlayClick ? closeModal() : {})}
       style={{
         opacity: overlayOpacity,
       }}
