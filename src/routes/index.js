@@ -6,3 +6,5 @@ export const AUTH_SUCCESS = '/auth/success';
 export const UPLOAD_PAGE = '/upload';
 
 export const HOME = '/home';
+
+export const SETTINGS = '/settings';

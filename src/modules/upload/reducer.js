@@ -20,11 +20,12 @@ const reducer = (state = initialState, action) => {
         file: state.file,
       };
     case UPLOAD_FILE_SUCCESS:
+      const { url, key } = action.payload;
       return {
         requesting: false,
         succussful: true,
         error: '',
-        file: action.payload.fileURL,
+        file: { url, key },
       };
     case UPLOAD_FILE_ERROR:
       return {

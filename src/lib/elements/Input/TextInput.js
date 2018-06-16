@@ -1,5 +1,14 @@
-import React  from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
+const TextInput = ({ label, ...rest }) => (
+  <Wrapper>
+    <Label>{label}</Label>
+    <Input {...rest} />
+  </Wrapper>
+);
+
+export { TextInput };
 
 const Wrapper = styled.div`
   display: inline-block;
@@ -11,7 +20,7 @@ const Wrapper = styled.div`
 const Label = styled.label`
   color: #000;
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Input = styled.input`
@@ -24,16 +33,11 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-width: 2px;
-	  border-image: linear-gradient(to right top, rgba(210,255,82,1) 0%, rgba(123,255,0,1) 100%);
+    border-image: linear-gradient(
+      to right top,
+      rgba(210, 255, 82, 1) 0%,
+      rgba(123, 255, 0, 1) 100%
+    );
     border-image-slice: 1;
   }
 `;
-
-const TextInput = ({ label, ...rest }) => (
-  <Wrapper>
-    <Label>{ label }</Label>
-    <Input {...rest} />
-  </Wrapper>
-);
-
-export { TextInput };

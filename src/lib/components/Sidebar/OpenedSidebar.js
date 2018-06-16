@@ -37,6 +37,7 @@ const OpenedSidebar = ({
           )}
         </Route>
       </NavLink>
+      <NavLink to="/settings">Settings</NavLink>
       <NavLink to="/upload">Upload</NavLink>
     </LinkContainer>
   </Container>

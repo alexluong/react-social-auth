@@ -1,4 +1,10 @@
-import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_ERROR } from './types';
+import {
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
+  UPDATE_AVATAR_REQUEST,
+  UPDATE_AVATAR_SUCCESS,
+} from './types';
 
 const initialState = {
   user: null,

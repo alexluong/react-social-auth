@@ -8,7 +8,7 @@ import {
 } from '../types';
 import { SERVER_URI } from 'config';
 import { getUser, GET_USER_SUCCESS } from 'modules/user';
-import { setItem } from 'config/localStorage';
+import { setItem } from 'lib';
 import { postAPI } from 'modules/helpers';
 import history from 'routes/history';
 

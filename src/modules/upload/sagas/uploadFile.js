@@ -21,10 +21,11 @@ function* uploadFile({ payload }) {
   try {
     //* Get presigned signature
     const response = yield call(getAPI, `${SERVER_URI}/upload`, true);
-    const { url, key } = response.data;
+    const { url, key } = response.data; // url is presigned signature url
 
     //* Upload to S3
     const { file } = payload;
+    console.log(file);
     yield call(uploadToS3, url, file);
 
     const fileURL = `https://s3.amazonaws.com/${BUCKET_NAME}/${key}`;
@@ -36,7 +37,7 @@ function* uploadFile({ payload }) {
 
     yield put({
       type: UPLOAD_FILE_SUCCESS,
-      payload: { fileURL },
+      payload: { url: fileURL, key },
     });
   } catch (error) {
     yield put({

@@ -1,4 +1,8 @@
-import { GET_USER_REQUEST } from './types';
+import {
+  GET_USER_REQUEST,
+  UPDATE_USER_REQUEST,
+  UPDATE_AVATAR_REQUEST,
+} from './types';
 
 const getUser = token => ({
   type: GET_USER_REQUEST,
@@ -7,4 +11,18 @@ const getUser = token => ({
   },
 });
 
-export { getUser };
+const updateUser = user => ({
+  type: UPDATE_USER_REQUEST,
+  payload: {
+    user,
+  },
+});
+
+const updateAvatar = avatar => ({
+  type: UPDATE_AVATAR_REQUEST,
+  payload: {
+    avatar,
+  },
+});
+
+export { getUser, updateUser, updateAvatar };

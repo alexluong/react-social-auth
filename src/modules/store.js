@@ -5,7 +5,7 @@ import throttle from 'lodash/throttle';
 import sagas from 'modules/sagas';
 import reducers from 'modules/reducers';
 
-import { getItem, setItem } from 'config/localStorage';
+import { getItem, setItem } from 'lib';
 
 //* Middlewares
 const sagaMiddleware = createSagaMiddleware();

@@ -18,6 +18,7 @@ import SignUpPage from 'pages/auth/SignUpPage';
 import SignOutPage from 'pages/auth/SignOutPage';
 import Stuff from 'pages/Stuff';
 import Facebook from 'pages/Facebook';
+import SettingsPage from 'pages/SettingsPage';
 import UploadPage from 'pages/UploadPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
@@ -48,6 +49,10 @@ class Root extends React.Component {
             <SidebarLayout
               path="/facebook"
               component={withAuthentication()(Facebook)}
+            />
+            <SidebarLayout
+              path="/settings"
+              component={withAuthentication()(SettingsPage)}
             />
             <Route path={routes.UPLOAD_PAGE} component={UploadPage} />
             <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />

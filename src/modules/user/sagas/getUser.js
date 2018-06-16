@@ -3,7 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { SERVER_URI } from 'config';
 import { GET_USER_REQUEST, GET_USER_ERROR, GET_USER_SUCCESS } from '../types';
 import { getAPI } from 'modules/helpers';
-import { setItem } from 'config/localStorage';
+import { setItem } from 'lib';
 
 function* getUser() {
   try {

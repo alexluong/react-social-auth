@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getItem } from 'config/localStorage';
+import { getItem } from 'lib';
 
 const getAPI = (url, requireToken) => {
   const config = {};

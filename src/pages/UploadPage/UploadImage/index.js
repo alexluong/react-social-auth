@@ -37,7 +37,8 @@ class UploadImage extends React.Component {
 
   render() {
     const { error, name } = this.state;
-    const { imgURL } = this.props;
+    const { file } = this.props;
+    const imgURL = file ? file.url : null;
 
     return (
       <React.Fragment>
@@ -81,6 +82,9 @@ class UploadImage extends React.Component {
 }
 
 export default connect(
-  state => ({ uploading: state.upload.requesting, imgURL: state.upload.file }),
+  state => ({
+    uploading: state.upload.requesting,
+    file: state.upload.file,
+  }),
   { uploadFile },
 )(UploadImage);

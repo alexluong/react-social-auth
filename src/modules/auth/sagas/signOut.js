@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 
 import { SIGN_OUT } from '../types';
-import { clearLocalStorage } from 'config/localStorage';
+import { clearLocalStorage } from 'lib';
 
 function signOut() {
   clearLocalStorage();
