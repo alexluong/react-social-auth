@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Draggable } from 'lib';
+
 class Facebook extends React.Component {
   render() {
-    return <div>Facebook</div>;
+    return <Draggable />;
   }
 }
 

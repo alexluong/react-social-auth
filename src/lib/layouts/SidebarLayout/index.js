@@ -4,7 +4,7 @@ import { Transition } from 'react-spring';
 
 import { Layout } from '../Layout';
 import { Sidebar } from '../../components/Sidebar';
-import { Toggle } from '../../elements/Toggle';
+import { Toggle } from '../../utilities/Toggle';
 
 class SidebarLayout extends Layout {
   render() {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-spring';
 import { TimingAnimation, Easing } from 'react-spring/dist/addons.cjs';
 
-import { Toggle } from '../../elements/Toggle';
-import { Portal } from '../../helpers/Portal';
+import { Toggle } from '../../utilities/Toggle';
+import { Portal } from '../../utilities/Portal';
 import ModalComponent from './ModalComponent';
 
 const Y_TRANSLATE = -50;
