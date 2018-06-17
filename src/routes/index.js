@@ -8,3 +8,5 @@ export const UPLOAD_PAGE = '/upload';
 export const HOME = '/home';
 
 export const SETTINGS = '/settings';
+
+export const DRAP_AND_DROP = '/dnd';

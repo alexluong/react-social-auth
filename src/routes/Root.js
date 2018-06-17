@@ -20,6 +20,7 @@ import Stuff from 'pages/Stuff';
 import Facebook from 'pages/Facebook';
 import SettingsPage from 'pages/SettingsPage';
 import UploadPage from 'pages/UploadPage';
+import DnDPage from 'pages/DnDPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
 // Misc
@@ -54,6 +55,7 @@ class Root extends React.Component {
               path="/settings"
               component={withAuthentication()(SettingsPage)}
             />
+            <Route path={routes.DRAP_AND_DROP} component={DnDPage} />
             <Route path={routes.UPLOAD_PAGE} component={UploadPage} />
             <Route path={routes.AUTH_SUCCESS} component={AuthSuccessPage} />
             {/* OAuth success */}
