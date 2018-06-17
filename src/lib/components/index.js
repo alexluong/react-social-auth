@@ -1,2 +1,2 @@
+export * from './DragCard';
 export * from './Sidebar';
-export * from './Draggable';

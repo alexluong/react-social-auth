@@ -1,11 +1,22 @@
 import React from 'react';
-
-import { Draggable } from 'lib';
+import styled from 'styled-components';
+import { DragCard } from 'lib';
 
 class Facebook extends React.Component {
   render() {
-    return <Draggable />;
+    return (
+      <Container>
+        <DragCard text="Drag me" />
+      </Container>
+    );
   }
 }
 
 export default Facebook;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+`;
