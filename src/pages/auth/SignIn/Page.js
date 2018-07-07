@@ -1,43 +1,60 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
 
-import auth from 'config/auth';
-import { signIn } from 'modules/auth';
+// UIs
 import AuthLayout from 'layouts/Auth';
-import SignInForm from './Form';
-import { LinkButton } from 'elements';
+import Form from '../components/Form';
+import SignInLinks from './Links';
+
+// Misc
+import { signIn } from 'modules/auth';
+import Validator from 'utilities/Validator';
 
 class SignInPage extends React.Component {
-  onSubmit = values => {
+  onSubmit = (values, actions) => {
     this.props.signIn(values);
   };
 
   render() {
     const { errorMessage } = this.props;
+
     return (
       <AuthLayout>
         {errorMessage && <p>{errorMessage}</p>}
-        <SignInForm onSubmit={this.onSubmit} />
-        <LinkButton inline={false} href={auth.google.start}>
-          Sign In with Google
-        </LinkButton>
-        <LinkButton inline={false} href={auth.facebook.start}>
-          Sign In with Facebook
-        </LinkButton>
-        <LinkButton inline={false} tag={Link} to="sign-up">
-          Don't have an account? Sign up.
-        </LinkButton>
+        <Formik
+          initialValues={{
+            username: '',
+            password: '',
+          }}
+          validate={Validator.validateForm}
+          onSubmit={this.onSubmit}
+        >
+          {props => (
+            <Form {...props} inputs={signInInputs} links={<SignInLinks />} />
+          )}
+        </Formik>
       </AuthLayout>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { errorMessage: state.auth.errorMessage };
-};
-
 export default connect(
-  mapStateToProps,
+  state => ({ errorMessage: state.auth.errorMessage }),
   { signIn },
 )(SignInPage);
+
+const signInInputs = [
+  {
+    type: 'text',
+    name: 'username',
+    placeholder: 'you@example.com',
+    label: 'Enter email or username:',
+  },
+  {
+    type: 'password',
+    name: 'password',
+    placeholder: 'password',
+    label: 'Enter password:',
+  },
+];

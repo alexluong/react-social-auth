@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
 
-import { signUp } from 'modules/auth';
+// UIs
 import AuthLayout from 'layouts/Auth';
-import SignUpForm from './Form';
-import { LinkButton } from 'elements';
+import Form from '../components/Form';
+import SignUpLink from './Link';
+
+// Misc
+import { signUp } from 'modules/auth';
+import Validator from 'utilities/Validator';
 
 class SignUpPage extends React.Component {
   onSubmit = values => {
@@ -17,10 +21,19 @@ class SignUpPage extends React.Component {
     return (
       <AuthLayout>
         {errorMessage && <p>{errorMessage}</p>}
-        <SignUpForm onSubmit={this.onSubmit} />
-        <LinkButton tag={Link} to="sign-in">
-          Have an account already? Sign in.
-        </LinkButton>
+        <Formik
+          initialValues={{
+            username: '',
+            email: '',
+            password: '',
+          }}
+          validate={values => Validator.validateForm(values)}
+          onSubmit={this.onSubmit}
+        >
+          {props => (
+            <Form {...props} inputs={signUpInputs} links={<SignUpLink />} />
+          )}
+        </Formik>
       </AuthLayout>
     );
   }
@@ -34,3 +47,24 @@ export default connect(
   mapStateToProps,
   { signUp },
 )(SignUpPage);
+
+const signUpInputs = [
+  {
+    type: 'text',
+    name: 'username',
+    placeholder: 'your_username',
+    label: 'Enter username:',
+  },
+  {
+    type: 'email',
+    name: 'email',
+    placeholder: 'you@example.com',
+    label: 'Enter email:',
+  },
+  {
+    type: 'password',
+    name: 'password',
+    placeholder: 'password',
+    label: 'Enter password:',
+  },
+];

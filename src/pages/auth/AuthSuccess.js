@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { socialSignIn } from 'modules/auth';
 
 class AuthSuccessPage extends React.Component {

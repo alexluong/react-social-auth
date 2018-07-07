@@ -51,7 +51,7 @@ class Stuff extends React.Component {
 const Content = ({ height, toggle }) => {
   return (
     <div
-      style={{ height, backgroundColor: new Color('primary').get() }}
+      style={{ height, backgroundColor: Color.get('primary') }}
       onClick={toggle}
     />
   );

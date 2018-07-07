@@ -14,19 +14,21 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER_REQUEST:
-      return { ...state };
+      return state;
     case GET_USER_SUCCESS:
       return {
         error: '',
         user: action.payload.user,
+        role: 'user',
       };
     case GET_USER_ERROR:
       return {
         error: action.payload.error,
         user: null,
+        role: 'guest',
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

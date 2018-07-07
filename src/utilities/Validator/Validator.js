@@ -14,32 +14,45 @@ class Validator {
     return true;
   }
 
+  static isEmptyObject(obj) {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * ? I'm confused about the scope of this function
+   * ? @this is Formik instead of Validator Class
+   */
   static validateForm(values) {
     const errors = {};
 
     Object.entries(values).forEach(([type, value]) => {
-      const errorMessage = this._checkError(type, value);
+      const errorMessage = Validator._checkError(type, value);
       if (errorMessage !== '') {
         errors[type] = errorMessage;
       }
     });
-
+    console.log(errors);
     return errors;
   }
 
-  _checkError(type, value) {
+  static _checkError(type, value) {
     switch (type) {
       case 'email':
         return this._validateEmail(value);
       case 'password':
         return this._validatePassword(value);
       default:
-        console.error(`ERROR: "${type}" cannot be validated.`);
+        // console.error(`ERROR: "${type}" cannot be validated.`);
         return '';
     }
   }
 
-  _validateEmail(email) {
+  static _validateEmail(email) {
     let errorMessage = '';
 
     if (!email) {
@@ -51,7 +64,7 @@ class Validator {
     return errorMessage;
   }
 
-  _validatePassword(password) {
+  static _validatePassword(password) {
     let errorMessage = '';
 
     if (!password) {
