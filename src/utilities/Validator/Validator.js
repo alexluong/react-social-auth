@@ -36,7 +36,7 @@ class Validator {
         errors[type] = errorMessage;
       }
     });
-    console.log(errors);
+
     return errors;
   }
 

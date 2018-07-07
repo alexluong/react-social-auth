@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux';
 
-import authReducer, { SIGN_OUT } from 'modules/auth';
-import userReducer from 'modules/user';
-import uploadReducer from 'modules/upload';
+import userReducer, { SIGN_OUT } from 'modules/user';
+import uiReducer from 'modules/ui';
 
 const appReducer = combineReducers({
-  auth: authReducer,
   user: userReducer,
-  upload: uploadReducer,
+  ui: uiReducer,
 });
 
 const rootReducer = (state, action) => {

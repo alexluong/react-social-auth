@@ -1,11 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { GET_USER_REQUEST, GET_USER_ERROR, GET_USER_SUCCESS } from '../types';
+import * as TYPES from '../types';
 import SERVER_URI from 'config/server';
 import { getAPI } from 'utilities/api';
 import LocalStorage from 'utilities/LocalStorage';
 
 function* getUser() {
+  yield put({ type: TYPES.GET_USER_REQUEST });
   try {
     const response = yield call(getAPI, `${SERVER_URI}/user/current`, true);
     const user = response.data.user;
@@ -14,12 +15,12 @@ function* getUser() {
     LocalStorage.setItem('user', user);
 
     yield put({
-      type: GET_USER_SUCCESS,
+      type: TYPES.GET_USER_SUCCESS,
       payload: { user },
     });
   } catch (error) {
     yield put({
-      type: GET_USER_ERROR,
+      type: TYPES.GET_USER_FAILURE,
       payload: {
         error: error.response.data,
       },
@@ -28,7 +29,7 @@ function* getUser() {
 }
 
 function* getUserWatcher() {
-  yield takeLatest(GET_USER_REQUEST, getUser);
+  yield takeLatest(TYPES.GET_USER, getUser);
 }
 
 export default getUserWatcher;

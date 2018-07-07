@@ -31,12 +31,12 @@ const Form = ({
       onBlur={handleBlur}
     />
 
-    <Button
+    <button
       type="submit"
       disabled={isSubmitting || !Validator.isEmptyObject(errors)}
     >
       Submit
-    </Button>
+    </button>
 
     {links}
   </form>

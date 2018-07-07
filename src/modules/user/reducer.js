@@ -1,35 +1,37 @@
-import {
-  GET_USER_REQUEST,
-  GET_USER_SUCCESS,
-  GET_USER_ERROR,
-  // UPDATE_AVATAR_REQUEST,
-  // UPDATE_AVATAR_SUCCESS,
-} from './types';
+import { handleActions } from 'redux-actions';
+import * as TYPES from './types';
 
+//* Initial state
 const initialState = {
   user: null,
   role: 'guest',
   error: '',
 };
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_USER_REQUEST:
-      return state;
-    case GET_USER_SUCCESS:
-      return {
-        error: '',
-        user: action.payload.user,
-        role: 'user',
-      };
-    case GET_USER_ERROR:
-      return {
-        error: action.payload.error,
-        user: null,
-        role: 'guest',
-      };
-    default:
-      return state;
-  }
-};
+
+//* Reducers
+const reducer = handleActions(
+  {
+    [TYPES.SIGN_IN_SUCCESS]: (state, payload) => ({
+      ...state,
+      authenticated: true,
+    }),
+    [TYPES.SIGN_IN_FAILURE]: (state, payload) => ({
+      authenticated: false,
+      role: 'guest',
+      user: null,
+    }),
+    [TYPES.GET_USER_SUCCESS]: (state, { user }) => ({
+      ...state,
+      role: (user && user.role) || 'user',
+      user,
+    }),
+    [TYPES.GET_USER_FAILURE]: (state, { user }) => ({
+      authenticated: false,
+      role: 'guest',
+      user: null,
+    }),
+  },
+  initialState,
+);
 
 export default reducer;

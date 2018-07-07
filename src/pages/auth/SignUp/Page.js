@@ -8,7 +8,7 @@ import Form from '../components/Form';
 import SignUpLink from './Link';
 
 // Misc
-import { signUp } from 'modules/auth';
+import { signUp } from 'modules/user';
 import Validator from 'utilities/Validator';
 
 class SignUpPage extends React.Component {
@@ -40,7 +40,7 @@ class SignUpPage extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { errorMessage: state.auth.errorMessage };
+  return { errorMessage: state.ui.errorMessage };
 };
 
 export default connect(

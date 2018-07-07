@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signOut } from 'modules/auth';
+import { signOut } from 'modules/user';
 
 class SignOutPage extends React.Component {
   componentDidMount() {

@@ -1,24 +1,24 @@
 import { takeLatest, call, put, take } from 'redux-saga/effects';
 
-import {
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
-  SOCIAL_SIGN_IN,
-  AUTH_ERROR,
-} from '../types';
-import { getUser, GET_USER_SUCCESS } from 'modules/user';
+import * as TYPES from '../types';
 import LocalStorage from 'utilities/LocalStorage';
 import SERVER_URI from 'config/server';
 import { postAPI } from 'utilities/api';
 import history from 'routes/history';
 
-function* callGetUser() {
+function* callGetUser(token) {
   //* Get user
-  yield put(getUser());
-  yield take(GET_USER_SUCCESS);
+  yield put({ type: TYPES.GET_USER });
+  yield take(TYPES.GET_USER_SUCCESS);
+
+  /**
+   * * Now that we're signed in
+   * * We can save token to local storage
+   */
+  LocalStorage.setItem('accessToken', token);
 
   yield put({
-    type: SIGN_IN_SUCCESS,
+    type: TYPES.SIGN_IN_SUCCESS,
   });
 
   history.push('/');
@@ -33,6 +33,8 @@ function* socialSignIn(action) {
 }
 
 function* signIn(action) {
+  yield put({ type: TYPES.SIGN_IN_REQUEST });
+
   try {
     const {
       payload: { username, password },
@@ -43,24 +45,21 @@ function* signIn(action) {
       username,
       password,
     });
-
-    //* Save token to localStorage
     const token = response.data.token;
-    LocalStorage.setItem('accessToken', token);
 
     yield call(callGetUser, token);
   } catch (error) {
     // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
     yield put({
-      type: AUTH_ERROR,
+      type: TYPES.SIGN_IN_FAILURE,
       payload: error.response.data,
     });
   }
 }
 
 function* signInWatcher() {
-  yield takeLatest(SIGN_IN_REQUEST, signIn);
-  yield takeLatest(SOCIAL_SIGN_IN, socialSignIn);
+  yield takeLatest(TYPES.SIGN_IN, signIn);
+  yield takeLatest(TYPES.SOCIAL_SIGN_IN, socialSignIn);
 }
 
 export default signInWatcher;

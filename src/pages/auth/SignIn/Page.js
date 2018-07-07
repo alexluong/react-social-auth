@@ -8,12 +8,12 @@ import Form from '../components/Form';
 import SignInLinks from './Links';
 
 // Misc
-import { signIn } from 'modules/auth';
+import { signIn } from 'modules/user';
 import Validator from 'utilities/Validator';
 
 class SignInPage extends React.Component {
-  onSubmit = (values, actions) => {
-    this.props.signIn(values);
+  submit = (values, actions) => {
+    this.props.signIn({ values, actions });
   };
 
   render() {
@@ -28,7 +28,7 @@ class SignInPage extends React.Component {
             password: '',
           }}
           validate={Validator.validateForm}
-          onSubmit={this.onSubmit}
+          onSubmit={this.submit}
         >
           {props => (
             <Form {...props} inputs={signInInputs} links={<SignInLinks />} />
@@ -40,7 +40,7 @@ class SignInPage extends React.Component {
 }
 
 export default connect(
-  state => ({ errorMessage: state.auth.errorMessage }),
+  state => ({ errorMessage: state.ui.errorMessage }),
   { signIn },
 )(SignInPage);
 

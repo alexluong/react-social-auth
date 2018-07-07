@@ -1,15 +1,13 @@
 import { call, put, take, select, takeLatest } from 'redux-saga/effects';
 
-import {
-  UPDATE_AVATAR_REQUEST,
-  UPDATE_AVATAR_ERROR,
-  UPDATE_AVATAR_SUCCESS,
-} from '../types';
+import * as TYPES from '../types';
 import { uploadFile, UPLOAD_FILE_SUCCESS } from 'modules/upload';
 import SERVER_URI from 'config/server';
 import { postAPI } from 'utilities/api';
 
 function* updateAvatar({ payload }) {
+  yield put({ type: TYPES.UPDATE_AVATAR });
+
   try {
     const { avatar } = payload;
 
@@ -21,14 +19,14 @@ function* updateAvatar({ payload }) {
     const { url, key } = file;
     yield call(postAPI, `${SERVER_URI}/user/updateAvatar`, key);
     yield put({
-      type: UPDATE_AVATAR_SUCCESS,
+      type: TYPES.UPDATE_AVATAR_SUCCESS,
       payload: {
         url,
       },
     });
   } catch (error) {
     yield put({
-      type: UPDATE_AVATAR_ERROR,
+      type: TYPES.UPDATE_AVATAR_FAILURE,
       payload: {
         error: error.message,
       },
@@ -37,7 +35,7 @@ function* updateAvatar({ payload }) {
 }
 
 function* updateAvatarWatcher() {
-  yield takeLatest(UPDATE_AVATAR_REQUEST, updateAvatar);
+  yield takeLatest(TYPES.UPDATE_AVATAR, updateAvatar);
 }
 
 export default updateAvatarWatcher;
