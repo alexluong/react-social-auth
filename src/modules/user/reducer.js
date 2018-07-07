@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   user: null,
+  role: 'guest',
   error: '',
 };
 const reducer = (state = initialState, action) => {

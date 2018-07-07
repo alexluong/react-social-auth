@@ -1,9 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { SERVER_URI } from 'config';
+import SERVER_URI from 'config/server';
 import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, AUTH_ERROR } from '../types';
-import { postAPI } from 'modules/helpers';
-import { SIGN_IN } from 'routes';
+import { postAPI } from 'utilities/api';
 import history from 'routes/history';
 
 function* signUp(action) {
@@ -23,7 +22,7 @@ function* signUp(action) {
       payload: token,
     });
 
-    history.push(SIGN_IN);
+    history.push('sign-in');
   } catch (error) {
     // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
     yield put({

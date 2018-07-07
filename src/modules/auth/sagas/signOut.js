@@ -1,10 +1,10 @@
 import { takeLatest } from 'redux-saga/effects';
 
 import { SIGN_OUT } from '../types';
-import { clearLocalStorage } from 'lib';
+import LocalStorage from 'utilities/LocalStorage';
 
 function signOut() {
-  clearLocalStorage();
+  LocalStorage.clearLocalStorage();
 }
 
 function* signOutWatcher() {

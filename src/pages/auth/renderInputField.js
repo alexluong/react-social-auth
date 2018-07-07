@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { TextInput } from 'lib';
+import { TextInput } from 'elements';
 
 const renderInputField = field => {
   const { input, type, placeholder, label, required } = field;

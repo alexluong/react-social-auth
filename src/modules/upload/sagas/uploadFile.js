@@ -6,8 +6,9 @@ import {
   UPLOAD_FILE_SUCCESS,
   UPLOAD_FILE_ERROR,
 } from '../types';
-import { SERVER_URI, BUCKET_NAME } from 'config';
-import { getAPI } from 'modules/helpers';
+import BUCKET_NAME from 'config/s3Bucket';
+import SERVER_URI from 'config/server';
+import { getAPI } from 'utilities/api';
 
 function uploadToS3(url, file) {
   return axios.put(url, file, {

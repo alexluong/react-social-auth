@@ -6,10 +6,10 @@ import {
   SOCIAL_SIGN_IN,
   AUTH_ERROR,
 } from '../types';
-import { SERVER_URI } from 'config';
 import { getUser, GET_USER_SUCCESS } from 'modules/user';
-import { setItem } from 'lib';
-import { postAPI } from 'modules/helpers';
+import LocalStorage from 'utilities/LocalStorage';
+import SERVER_URI from 'config/server';
+import { postAPI } from 'utilities/api';
 import history from 'routes/history';
 
 function* callGetUser() {
@@ -46,7 +46,7 @@ function* signIn(action) {
 
     //* Save token to localStorage
     const token = response.data.token;
-    setItem('accessToken', token);
+    LocalStorage.setItem('accessToken', token);
 
     yield call(callGetUser, token);
   } catch (error) {

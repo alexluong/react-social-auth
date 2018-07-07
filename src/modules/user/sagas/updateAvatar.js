@@ -1,13 +1,13 @@
 import { call, put, take, select, takeLatest } from 'redux-saga/effects';
 
-import { SERVER_URI } from 'config';
-import { postAPI } from 'modules/helpers';
 import {
   UPDATE_AVATAR_REQUEST,
   UPDATE_AVATAR_ERROR,
   UPDATE_AVATAR_SUCCESS,
 } from '../types';
 import { uploadFile, UPLOAD_FILE_SUCCESS } from 'modules/upload';
+import SERVER_URI from 'config/server';
+import { postAPI } from 'utilities/api';
 
 function* updateAvatar({ payload }) {
   try {

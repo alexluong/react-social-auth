@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DragCard } from 'lib';
+import { DragCard } from 'components/DragCard';
 
 class Facebook extends React.Component {
   render() {

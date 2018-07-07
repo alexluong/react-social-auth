@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { SERVER_URI } from 'config';
 import { GET_USER_REQUEST, GET_USER_ERROR, GET_USER_SUCCESS } from '../types';
-import { getAPI } from 'modules/helpers';
-import { setItem } from 'lib';
+import SERVER_URI from 'config/server';
+import { getAPI } from 'utilities/api';
+import LocalStorage from 'utilities/LocalStorage';
 
 function* getUser() {
   try {
@@ -11,7 +11,7 @@ function* getUser() {
     const user = response.data.user;
 
     //* Save user to local storage
-    setItem('user', user);
+    LocalStorage.setItem('user', user);
 
     yield put({
       type: GET_USER_SUCCESS,

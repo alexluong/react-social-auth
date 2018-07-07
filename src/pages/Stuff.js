@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Spring } from 'react-spring';
 
-import { Color, Modal, Toggle, Typography, LinkButton, IconButton } from 'lib';
+import Color from 'utilities/Color';
+import Toggle from 'utilities/Toggle';
+import { Modal, Typography, LinkButton, IconButton } from 'elements';
 
 class Stuff extends React.Component {
   render() {
@@ -22,7 +24,7 @@ class Stuff extends React.Component {
           {({ on, toggle, close }) => (
             <React.Fragment>
               <button onClick={toggle}>Click me</button>
-              <Modal isOpen={on} closeModal={close}>
+              <Modal isOpen={on} closeModal={close} overlayOpacity={0.9}>
                 <h1>{message}</h1>
               </Modal>
             </React.Fragment>

@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import throttle from 'lodash/throttle';
+import LocalStorage from 'utilities/LocalStorage';
 
 import sagas from 'modules/sagas';
 import reducers from 'modules/reducers';
-
-import { getItem, setItem } from 'lib';
 
 //* Middlewares
 const sagaMiddleware = createSagaMiddleware();
@@ -15,7 +14,7 @@ const enhancers = compose(
 );
 
 //* Get persisted state
-const persistedState = getItem('state');
+const persistedState = LocalStorage.getItem('state');
 
 //* Create store
 const store = createStore(reducers, persistedState, enhancers);
@@ -27,7 +26,7 @@ store.subscribe(
     const { auth, user } = store.getState();
 
     if (auth.authenticated) {
-      setItem('state', { auth, user });
+      LocalStorage.setItem('state', { auth, user });
     }
   }, 1000),
 );
