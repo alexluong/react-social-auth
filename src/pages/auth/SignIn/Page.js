@@ -8,7 +8,8 @@ import Form from '../components/Form';
 import SignInLinks from './Links';
 
 // Misc
-import { signIn } from 'modules/user';
+import { loadingSelector, errorMessageSelector } from 'modules/selectors';
+import { signIn, SIGN_IN } from 'modules/user';
 import Validator from 'utilities/Validator';
 
 class SignInPage extends React.Component {
@@ -17,7 +18,7 @@ class SignInPage extends React.Component {
   };
 
   render() {
-    const { errorMessage } = this.props;
+    const { isLoading, errorMessage } = this.props;
 
     return (
       <AuthLayout>
@@ -31,7 +32,12 @@ class SignInPage extends React.Component {
           onSubmit={this.submit}
         >
           {props => (
-            <Form {...props} inputs={signInInputs} links={<SignInLinks />} />
+            <Form
+              {...props}
+              isLoading={isLoading}
+              inputs={signInInputs}
+              links={<SignInLinks />}
+            />
           )}
         </Formik>
       </AuthLayout>
@@ -40,7 +46,10 @@ class SignInPage extends React.Component {
 }
 
 export default connect(
-  state => ({ errorMessage: state.ui.errorMessage }),
+  state => ({
+    isLoading: loadingSelector([SIGN_IN])(state),
+    errorMessage: errorMessageSelector([SIGN_IN])(state),
+  }),
   { signIn },
 )(SignInPage);
 

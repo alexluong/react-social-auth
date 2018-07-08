@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../history';
-import Spinner from 'elements/Spinner';
+import { Spinner } from 'elements';
 
 const withAuthorization = (allowedRoles, redirect) => Component => {
   if (!allowedRoles) allowedRoles = '[user]';

@@ -5,10 +5,10 @@ import SERVER_URI from 'config/server';
 import { getAPI } from 'utilities/api';
 import LocalStorage from 'utilities/LocalStorage';
 
-function* getUser() {
+function* getUser({ payload: { token } }) {
   yield put({ type: TYPES.GET_USER_REQUEST });
   try {
-    const response = yield call(getAPI, `${SERVER_URI}/user/current`, true);
+    const response = yield call(getAPI, `${SERVER_URI}/user/current`, token);
     const user = response.data.user;
 
     //* Save user to local storage
@@ -22,7 +22,7 @@ function* getUser() {
     yield put({
       type: TYPES.GET_USER_FAILURE,
       payload: {
-        error: error.response.data,
+        message: error.response.data,
       },
     });
   }

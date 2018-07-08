@@ -8,7 +8,10 @@ import history from 'routes/history';
 
 function* callGetUser(token) {
   //* Get user
-  yield put({ type: TYPES.GET_USER });
+  yield put({
+    type: TYPES.GET_USER,
+    payload: { token },
+  });
   yield take(TYPES.GET_USER_SUCCESS);
 
   /**
@@ -24,36 +27,32 @@ function* callGetUser(token) {
   history.push('/');
 }
 
-function* socialSignIn(action) {
-  const {
-    payload: { token },
-  } = action;
-
+function* socialSignIn({ payload: { token } }) {
   yield call(callGetUser, token);
 }
 
-function* signIn(action) {
+function* signIn({ payload: { username, password }, meta: { setSubmitting } }) {
   yield put({ type: TYPES.SIGN_IN_REQUEST });
 
   try {
-    const {
-      payload: { username, password },
-    } = action;
-
     //* Sign in
     const response = yield call(postAPI, `${SERVER_URI}/auth/local/signin`, {
       username,
       password,
     });
     const token = response.data.token;
-
     yield call(callGetUser, token);
   } catch (error) {
-    // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
     yield put({
       type: TYPES.SIGN_IN_FAILURE,
-      payload: error.response.data,
+      error: true,
+      payload: {
+        message: error.response.data,
+      },
     });
+
+    //* Re-enable formik form
+    yield call(setSubmitting, false);
   }
 }
 

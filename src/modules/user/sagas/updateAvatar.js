@@ -28,7 +28,7 @@ function* updateAvatar({ payload }) {
     yield put({
       type: TYPES.UPDATE_AVATAR_FAILURE,
       payload: {
-        error: error.message,
+        message: error.message,
       },
     });
   }

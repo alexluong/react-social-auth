@@ -53,11 +53,12 @@ const buttonCss = css`
   ${({ color }) => color && `color: ${Color.get(color)}`};
   ${({ backgroundColor }) =>
     backgroundColor && `background-color: ${Color.get(backgroundColor)}`};
-  display: ${props => (props.inline ? 'inline-block' : 'block')};
+  display: ${({ inline }) => (inline ? 'inline-block' : 'block')};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   border-width: 2px;
   border-style: solid;
-  cursor: pointer;
   padding: 1rem 2rem;
 
   &:focus,

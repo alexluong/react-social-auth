@@ -18,7 +18,7 @@ const Spinner = ({ size, ...props }) => {
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;
 
-export default Spinner;
+export { Spinner };
 
 const getSize = size => {
   switch (size) {

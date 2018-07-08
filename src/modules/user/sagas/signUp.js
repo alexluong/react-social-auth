@@ -29,7 +29,9 @@ function* signUp(action) {
     // TODO: Gotta change from AUTH_ERROR to SIGN_IN_ERROR
     yield put({
       type: TYPES.SIGN_UP_FAILURE,
-      payload: error.response.data,
+      payload: {
+        message: error.response.data,
+      },
     });
   }
 }

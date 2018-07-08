@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Validator from 'utilities/Validator';
 import InputList from 'components/InputList';
-import { Button } from 'elements';
+import { Button, Spinner } from 'elements';
 
 const propTypes = {
+  isLoading: PropTypes.bool,
   inputs: PropTypes.array.isRequired,
   links: PropTypes.element,
 };
@@ -18,6 +20,7 @@ const Form = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
+  isLoading,
   links,
   inputs,
 }) => (
@@ -31,12 +34,16 @@ const Form = ({
       onBlur={handleBlur}
     />
 
-    <button
-      type="submit"
-      disabled={isSubmitting || !Validator.isEmptyObject(errors)}
-    >
-      Submit
-    </button>
+    <ButtonContainer>
+      <Button
+        type="submit"
+        disabled={isSubmitting || !Validator.isEmptyObject(errors)}
+      >
+        Submit
+      </Button>
+
+      {isLoading && <Spinner size="s" />}
+    </ButtonContainer>
 
     {links}
   </form>
@@ -44,3 +51,8 @@ const Form = ({
 Form.propTypes = propTypes;
 
 export default Form;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
