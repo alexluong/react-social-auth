@@ -48,18 +48,17 @@ const ModalComponent = ({
     <Background
       onClick={() => (closeOnOverlayClick ? closeModal() : {})}
       style={{
-        opacity: overlayOpacity,
+        opacity: overlayOpacity.interpolate(opacity => `${opacity}`),
       }}
     />
   </ModalWrapper>
 );
-
 ModalComponent.propTypes = propTypes;
-
 export default ModalComponent;
 
 const ModalWrapper = styled.div`
-  ${position('absolute')} width: 100%;
+  ${position('absolute')};
+  width: 100%;
   height: 100%;
   ${position('centerChildren')};
 `;

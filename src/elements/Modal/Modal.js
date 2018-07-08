@@ -26,6 +26,11 @@ class Modal extends React.Component {
     animationDuration: 200,
   };
 
+  modalComponent = [
+    (on, close) => styles => this.renderModalComponent(styles, on, close),
+    (on, close) => styles => null,
+  ];
+
   /**
    * @param {*} close: close modal with animation
    * then
@@ -47,7 +52,7 @@ class Modal extends React.Component {
    * @param {*} on: is showing modal
    * @param {*} close: close the modal
    *
-   * local controlled variable
+   * local controlled variables
    * so the animation is finished
    * before actually close the modal
    */
@@ -91,7 +96,7 @@ class Modal extends React.Component {
               leave={leave}
               impl={TimingAnimation}
               config={{ duration: animationDuration, easing: Easing.linear }}
-              children={styles => this.renderModalComponent(styles, on, close)}
+              children={this.modalComponent[on ? 0 : 1](on, close)}
             />
           </Portal>
         )}

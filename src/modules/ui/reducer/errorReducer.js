@@ -3,7 +3,7 @@ const errorReducer = (state = {}, { type, payload }) => {
 
   // not a *_REQUEST / *_FAILURE actions, so we ignore them
   if (!matches) return state;
-  console.log({ payload });
+
   const [, requestName, requestState] = matches;
   return {
     ...state,

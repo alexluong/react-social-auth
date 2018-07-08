@@ -10,6 +10,10 @@ class Toggle extends React.Component {
     on: false,
   };
 
+  state = {
+    on: false,
+  };
+
   constructor(props) {
     super(props);
 
