@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LinkButton } from 'elements';
+import Button from 'elements/Button';
 
 const SignUpLink = props => (
-  <LinkButton tag={Link} to="sign-in">
+  <Button variant="link" tag={Link} to="sign-in">
     Have an account already? Sign in.
-  </LinkButton>
+  </Button>
 );
 
 export default SignUpLink;

@@ -7,7 +7,8 @@ import SignInPage from 'pages/auth/SignIn';
 import SignUpPage from 'pages/auth/SignUp';
 import SignOutPage from 'pages/auth/SignOut';
 import Stuff from 'pages/Stuff';
-import Facebook from 'pages/Facebook';
+import AnimationPage from 'pages/Animation';
+import FacebookPage from 'pages/Facebook';
 import SettingsPage from 'pages/Settings';
 import UploadPage from 'pages/Upload';
 import DnDPage from 'pages/DnD';
@@ -32,7 +33,8 @@ class Routes extends React.Component {
 
           {/* App */}
           <Route path="/home" component={User(Stuff)} />
-          <Route path="/facebook" component={User(Facebook)} />
+          <Route path="/animation" component={User(AnimationPage)} />
+          <Route path="/facebook" component={User(FacebookPage)} />
           <Route path="/settings" component={User(SettingsPage)} />
           <Route path="/dnd" component={DnDPage} />
           <Route path="/upload" component={UploadPage} />

@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 
 import { elevation, position } from 'config/theme';
 import Color from 'utilities/Color';
-import { Icon } from '../Icon';
+import { Icon } from 'elements';
 
 const propTypes = {
   cardOpacity: PropTypes.object.isRequired,

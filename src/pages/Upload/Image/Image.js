@@ -50,11 +50,7 @@ class UploadImage extends React.Component {
             onChange={this.handleFileSelect}
             style={{ display: 'none' }}
           />
-          <Button
-            type="button"
-            onClick={() => this.fileInput.current.click()}
-            outline
-          >
+          <Button type="button" onClick={() => this.fileInput.current.click()}>
             Select File
           </Button>
           <TextInput

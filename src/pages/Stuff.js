@@ -1,60 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Spring } from 'react-spring';
-
-import Color from 'utilities/Color';
-import Toggle from 'utilities/Toggle';
-import { Modal, Typography, LinkButton, IconButton } from 'elements';
+import { Typography, Button } from 'elements';
 
 class Stuff extends React.Component {
   render() {
-    const message = 'Hello from the other sidee';
     return (
-      <div>
-        <LinkButton color="primary" tag={Link} to="/sign-out">
-          Clickk
-        </LinkButton>
+      <div style={{ padding: '5rem' }}>
+        <Button variant="link" color="primary" tag={Link} to="/sign-out">
+          Sign out
+        </Button>
 
-        <IconButton name="close" />
-        <Typography tag="h1" color="secondary">
-          Hi theree
+        <Button
+          variant="icon"
+          name="close"
+          onClick={() => console.log('icon')}
+        />
+
+        <Button color="secondary" onClick={() => console.log('normal')}>
+          Click
+        </Button>
+
+        <br />
+        <br />
+
+        <Button variant="outlined" onClick={() => console.log('outlined')}>
+          Outlined
+        </Button>
+
+        <br />
+        <br />
+
+        <Button disabled>Disabled</Button>
+
+        <Typography tag="h1" color="primary">
+          Hi there
         </Typography>
-        <Link to="/facebook">Facebook</Link>
-        <Toggle>
-          {({ on, toggle, close }) => (
-            <React.Fragment>
-              <button onClick={toggle}>Click me</button>
-              <Modal isOpen={on} closeModal={close} overlayOpacity={0.9}>
-                <h1>{message}</h1>
-              </Modal>
-            </React.Fragment>
-          )}
-        </Toggle>
-
-        <Toggle>
-          {({ on, toggle }) => (
-            <Spring
-              from={{ height: '200px' }}
-              to={{ height: on ? '500px' : '200px' }}
-              toggle={toggle}
-              children={Content}
-            />
-          )}
-        </Toggle>
-
-        <h1>Hi</h1>
       </div>
     );
   }
 }
-
-const Content = ({ height, toggle }) => {
-  return (
-    <div
-      style={{ height, backgroundColor: Color.get('primary') }}
-      onClick={toggle}
-    />
-  );
-};
 
 export default Stuff;

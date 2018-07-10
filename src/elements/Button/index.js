@@ -1,3 +1,2 @@
-export * from './Button';
-export * from './IconButton';
-export * from './LinkButton';
+import Button from './Button';
+export default Button;

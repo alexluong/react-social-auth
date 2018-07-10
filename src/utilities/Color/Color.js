@@ -19,21 +19,12 @@ class Color {
     return COLORS['default'];
   }
 
-  static colorScheme(type = 'default') {
-    switch (type) {
-      case 'primary':
-        return {
-          text: COLORS['white'],
-          border: COLORS['primary'],
-          background: COLORS['primary'],
-        };
-      default:
-        return {
-          text: COLORS['white'],
-          border: COLORS['black'],
-          background: COLORS['black'],
-        };
+  static getText(color = 'default') {
+    if (['primary', 'secondary', 'default'].includes(color)) {
+      return Color.get('white');
     }
+
+    return Color.get('text');
   }
 }
 

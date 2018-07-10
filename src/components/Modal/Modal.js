@@ -8,6 +8,7 @@ import Portal from 'utilities/Portal';
 import ModalComponent from './ModalComponent';
 
 const Y_TRANSLATE = -50;
+const ANIMATION_DURATION_DEFAULT = 200;
 
 class Modal extends React.Component {
   static propTypes = {
@@ -23,7 +24,7 @@ class Modal extends React.Component {
     closeButton: true,
     closeOnOverlayClick: true,
     overlayOpacity: 0,
-    animationDuration: 200,
+    animationDuration: ANIMATION_DURATION_DEFAULT,
   };
 
   modalComponent = [
@@ -105,7 +106,7 @@ class Modal extends React.Component {
   }
 }
 
-export { Modal };
+export default Modal;
 
 const opacity = (overlayOpacity = 0, cardOpacity = 0) => {
   return {
