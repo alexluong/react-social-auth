@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'elements';
+import Input from 'elements/Input';
 
 const propTypes = {
   inputs: PropTypes.array.isRequired,
@@ -12,7 +12,8 @@ const propTypes = {
 const InputList = ({ inputs, values, touched, errors, ...formActions }) => {
   return inputs.map(({ name, type, label, placeholder }) => (
     <React.Fragment key={name}>
-      <TextInput
+      <Input
+        variant="text"
         name={name}
         type={type}
         label={label}

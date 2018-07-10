@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Color from 'utilities/Color';
 
-const TextInput = ({ label, ...rest }) => (
+const propTypes = {
+  label: PropTypes.string,
+};
+
+const TextInput = ({ label, color, ...rest }) => (
   <Wrapper>
-    <Label>{label}</Label>
-    <Input {...rest} />
+    {label && <Label color={color}>{label}</Label>}
+    <Input color={color} {...rest} />
   </Wrapper>
 );
-
-export { TextInput };
+TextInput.propTypes = propTypes;
+export default TextInput;
 
 const Wrapper = styled.div`
   display: inline-block;
@@ -18,7 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
-  color: #000;
+  color: ${({ color }) => Color.get(color)};
   display: block;
   margin-bottom: 0.5rem;
 `;

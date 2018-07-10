@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { uploadFile } from 'modules/upload';
-import { Button, TextInput } from 'elements';
+import { Button, Input } from 'elements';
 
 class UploadImage extends React.Component {
   state = {
@@ -53,9 +53,10 @@ class UploadImage extends React.Component {
           <Button type="button" onClick={() => this.fileInput.current.click()}>
             Select File
           </Button>
-          <TextInput
-            label="File name"
+          <Input
+            variant="text"
             type="text"
+            label="File name"
             placeholder="name..."
             value={name}
             disabled

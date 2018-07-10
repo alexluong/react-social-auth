@@ -4,31 +4,33 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import Button from './Button';
 
-storiesOf('Button/Normal', module)
+storiesOf('Elements/Button/Normal', module)
   .addDecorator((story, context) => withInfo()(story)(context))
-  .add('normal', () => <Button onClick={action('clicked')}>Button</Button>)
+  .add('normal button', () => (
+    <Button onClick={action('clicked')}>Button</Button>
+  ))
   .add('with color', () => (
     <Button onClick={action('clicked')} color="primary">
       Button
     </Button>
   ));
 
-storiesOf('Button/Outlined', module)
+storiesOf('Elements/Button/Outlined', module)
   .addDecorator((story, context) => withInfo()(story)(context))
-  .add('outline', () => (
+  .add('outlined button', () => (
     <Button onClick={action('clicked')} variant="outlined">
       Outlined Button
     </Button>
   ))
-  .add('outline with color', () => (
+  .add('with color', () => (
     <Button onClick={action('clicked')} variant="outlined" color="primary">
       Outlined Button
     </Button>
   ));
 
-storiesOf('Button/Icon', module)
+storiesOf('Elements/Button/Icon', module)
   .addDecorator((story, context) => withInfo()(story)(context))
-  .add('icon', () => (
+  .add('icon button', () => (
     <Button onClick={action('clicked')} variant="icon" name="close" />
   ))
   .add('with color', () => (
@@ -49,14 +51,14 @@ storiesOf('Button/Icon', module)
     />
   ));
 
-storiesOf('Button/Link', module)
+storiesOf('Elements/Button/Link', module)
   .addDecorator((story, context) => withInfo()(story)(context))
-  .add('link', () => (
+  .add('link button', () => (
     <Button onClick={action('clicked')} variant="link">
       Link Button
     </Button>
   ))
-  .add('link with color', () => (
+  .add('with color', () => (
     <Button onClick={action('clicked')} variant="link" color="primary">
       Link Button
     </Button>

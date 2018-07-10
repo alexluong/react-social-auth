@@ -1,2 +1,2 @@
-export * from './TextInput';
-export * from './FileInput';
+import Input from './Input';
+export default Input;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { updateAvatar } from 'modules/user';
-import { FileInput } from 'elements';
+// UIs
+import Input from 'elements/Input';
 import AvatarPlaceholder from './AvatarPlaceholder';
 
 class SettingsPage extends React.Component {
@@ -17,13 +17,14 @@ class SettingsPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <FileInput
+        <Input
+          variant="file"
           show={false}
           accept="image/*"
           onChange={this.handleFileSelect}
         >
           <AvatarPlaceholder />
-        </FileInput>
+        </Input>
       </React.Fragment>
     );
   }

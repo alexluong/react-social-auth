@@ -22,7 +22,7 @@ class FileInput extends React.Component {
 
   handleFileChange = e => {
     const files = e.target.files;
-    if (files.length > 0) {
+    if (files.length > 0 && this.props.onChange) {
       this.props.onChange(files);
     }
   };
@@ -54,4 +54,4 @@ class FileInput extends React.Component {
   }
 }
 
-export { FileInput };
+export default FileInput;

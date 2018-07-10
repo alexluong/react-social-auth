@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+import Color from 'utilities/Color';
 
 const propTypes = {
-  size: PropTypes.oneOf(['s', 'm', 'l']),
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf(['s', 'm', 'l']),
+  ]),
   color: PropTypes.string,
 };
 const defaultProps = {
   size: 'm',
-  color: 'mediumseagreen',
+  color: 'default',
 };
 
 const Spinner = ({ size, ...props }) => {
@@ -17,10 +21,13 @@ const Spinner = ({ size, ...props }) => {
 };
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;
-
-export { Spinner };
+export default Spinner;
 
 const getSize = size => {
+  if (typeof size === 'number') {
+    return size;
+  }
+
   switch (size) {
     case 's':
       return 30;
@@ -45,7 +52,7 @@ const spin = keyframes`
 
 const StyledSpinner = styled.div`
   border: ${props => 0.13 * props.size}px solid #f3f3f3;
-  border-top-color: ${props => props.color};
+  border-top-color: ${({ color }) => Color.get(color)};
   border-radius: 50%;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
