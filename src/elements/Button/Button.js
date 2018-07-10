@@ -9,7 +9,14 @@ import OutlinedButton from './OutlinedButton';
 const propTypes = {
   variant: PropTypes.oneOf(['normal', 'outlined', 'link', 'icon']),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'black',
+    'white',
+    'text',
+    'default',
+  ]),
 };
 const defaultProps = {
   variant: 'normal',

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SidebarLayout from 'layouts/Sidebar';
 import { Typography, Button } from 'elements';
 
 class Stuff extends React.Component {
   render() {
     return (
-      <div style={{ padding: '5rem' }}>
+      <SidebarLayout style={{ paddingLeft: '5rem' }}>
         <Button variant="link" color="primary" tag={Link} to="/sign-out">
           Sign out
         </Button>
@@ -35,7 +36,7 @@ class Stuff extends React.Component {
         <Typography tag="h1" color="primary">
           Hi there
         </Typography>
-      </div>
+      </SidebarLayout>
     );
   }
 }

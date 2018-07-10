@@ -5,7 +5,7 @@ import Spinner from './Spinner';
 
 storiesOf('Elements/Spinner', module)
   .addDecorator((story, context) => withInfo()(story)(context))
-  .add('normal', () => <Spinner />)
+  .add('spinner', () => <Spinner />)
   .add('with color', () => <Spinner color="primary" />);
 
 storiesOf('Elements/Spinner/sizes', module)

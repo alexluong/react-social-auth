@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { NavLink, Route } from 'react-router-dom';
 
-import { Color } from '../../utilities/Color';
-import { Icon } from '../../elements/Icon';
-import { IconButton } from '../../elements/Button';
+import Color from 'utilities/Color';
+import { Icon, Button } from 'elements';
 import { position } from 'config/theme';
 
 const propTypes = {
@@ -13,17 +12,22 @@ const propTypes = {
   onControlClick: PropTypes.func,
 };
 
-const ClosedSidebar = ({
+const OpenedSidebar = ({
   isOpen,
   toggleOpen,
   opacity,
   transform,
   ...props
 }) => (
-  <Container style={{ opacity, transform }} {...props}>
+  <Container {...props}>
     <LogoContainer>
       <div>LOGO</div>
-      <SidebarControl name="arrow-left" color="white" onClick={toggleOpen} />
+      <SidebarControl
+        variant="icon"
+        name="arrow-left"
+        color="white"
+        onClick={toggleOpen}
+      />
     </LogoContainer>
     <LinkContainer>
       <NavLink to="/home">Hello</NavLink>
@@ -37,13 +41,15 @@ const ClosedSidebar = ({
           )}
         </Route>
       </NavLink>
+      <NavLink to="/settings">Settings</NavLink>
+      <NavLink to="/dnd">DnD</NavLink>
       <NavLink to="/upload">Upload</NavLink>
     </LinkContainer>
   </Container>
 );
-ClosedSidebar.propTypes = propTypes;
+OpenedSidebar.propTypes = propTypes;
 
-export default ClosedSidebar;
+export default OpenedSidebar;
 
 const Container = styled.div`
   width: 100%;
@@ -57,7 +63,7 @@ const LogoContainer = styled.div`
   ${position('centerChildren')};
 `;
 
-const SidebarControl = styled(IconButton)`
+const SidebarControl = styled(Button)`
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -69,13 +75,13 @@ const LinkContainer = styled.div`
     display: flex;
     align-items: center;
     height: 7rem;
-    color: ${new Color('primary').get()};
+    color: ${Color.get('primary')};
     text-decoration: none;
     padding-left: 3rem;
     position: relative;
     &.active {
-      background-color: ${new Color('secondary').get()};
-      color: ${new Color('white').get()};
+      background-color: ${Color.get('secondary')};
+      color: ${Color.get('white')};
       &::after {
         visibility: visible;
       }

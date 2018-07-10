@@ -1,7 +1,7 @@
 import React from 'react';
 
-import OpenedSidebar from './OpenedSidebar';
-import ClosedSidebar from './ClosedSidebar';
+import OpenedSidebar from './Opened';
+import ClosedSidebar from './Closed';
 
 class Sidebar extends React.Component {
   render() {
@@ -14,4 +14,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export { Sidebar };
+export default Sidebar;

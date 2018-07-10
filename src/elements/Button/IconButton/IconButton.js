@@ -26,4 +26,5 @@ export default IconButton;
 const StyledIconButton = styled(ButtonBase)`
   padding: 0.5rem;
   border: none;
+  background: transparent;
 `;
