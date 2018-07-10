@@ -71,7 +71,7 @@ class DragCard extends React.Component {
 }
 
 const DragCardWithGesture = withGesture(DragCard);
-export { DragCardWithGesture as DragCard };
+export default DragCardWithGesture;
 
 const CardContainer = styled(animated.div)`
   z-index: 10000;
