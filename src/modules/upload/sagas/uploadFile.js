@@ -1,11 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 
-import {
-  UPLOAD_FILE_REQUEST,
-  UPLOAD_FILE_SUCCESS,
-  UPLOAD_FILE_ERROR,
-} from '../types';
+import * as TYPES from '../types';
 import BUCKET_NAME from 'config/s3Bucket';
 import SERVER_URI from 'config/server';
 import { getAPI } from 'utilities/api';
@@ -18,17 +14,16 @@ function uploadToS3(url, file) {
   });
 }
 
-function* uploadFile({ payload }) {
+function* uploadFile({ payload: { file } }) {
+  yield put({ type: TYPES.UPLOAD_FILE_REQUEST });
+
   try {
     //* Get presigned signature
     const response = yield call(getAPI, `${SERVER_URI}/upload`, true);
     const { url, key } = response.data; // url is presigned signature url
 
     //* Upload to S3
-    const { file } = payload;
-    console.log(file);
     yield call(uploadToS3, url, file);
-
     const fileURL = `https://s3.amazonaws.com/${BUCKET_NAME}/${key}`;
     /**
      * We now have the key (file name)
@@ -37,19 +32,22 @@ function* uploadFile({ payload }) {
      */
 
     yield put({
-      type: UPLOAD_FILE_SUCCESS,
+      type: TYPES.UPLOAD_FILE_SUCCESS,
       payload: { url: fileURL, key },
     });
   } catch (error) {
     yield put({
-      type: UPLOAD_FILE_ERROR,
-      payload: error.response.data,
+      type: TYPES.UPLOAD_FILE_FAILURE,
+      error: true,
+      payload: {
+        message: error.response.data,
+      },
     });
   }
 }
 
 function* uploadFileWatcher() {
-  yield takeLatest(UPLOAD_FILE_REQUEST, uploadFile);
+  yield takeLatest(TYPES.UPLOAD_FILE, uploadFile);
 }
 
 export default uploadFileWatcher;

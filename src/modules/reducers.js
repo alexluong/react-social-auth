@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 
-import userReducer, { SIGN_OUT } from 'modules/user';
-import uiReducer from 'modules/ui';
+import userReducer, { SIGN_OUT } from './user';
+import uploadReducer from './upload';
+import uiReducer from './ui';
 
 const appReducer = combineReducers({
   user: userReducer,
+  upload: uploadReducer,
   ui: uiReducer,
 });
 

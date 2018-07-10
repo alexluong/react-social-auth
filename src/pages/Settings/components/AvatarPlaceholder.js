@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import { position } from 'config/theme';
 import avatarPlaceholder from 'assets/avatar-placeholder.png';
 
-const AvatarPlaceholder = props => (
+const defaultProps = {
+  src: avatarPlaceholder,
+};
+
+const AvatarPlaceholder = ({ src, ...props }) => (
   <Container {...props}>
-    <img src={avatarPlaceholder} alt="avatar placeholder" />
+    <img src={src} alt="avatar placeholder" />
     <Overlay>Upload Photo</Overlay>
   </Container>
 );
-
+AvatarPlaceholder.defaultProps = defaultProps;
 export default AvatarPlaceholder;
 
 const Container = styled.div`
@@ -23,6 +27,7 @@ const Container = styled.div`
   cursor: pointer;
   img {
     width: 100%;
+    height: 100%;
   }
   &:hover {
     div {
@@ -39,7 +44,7 @@ const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   visibility: hidden;
   transform: translateY(100%);
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   ${position('centerChildren')};
   padding: 1rem;

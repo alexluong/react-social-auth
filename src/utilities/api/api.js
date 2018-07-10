@@ -26,4 +26,13 @@ const postAPI = (url, body, requireToken) => {
   return axios.post(url, body, config);
 };
 
-export { getAPI, postAPI };
+const putAPI = (url, body, requireToken) => {
+  const config = {};
+  if (requireToken) {
+    const token = getToken(requireToken);
+    config.headers = { Authorization: `Bearer ${token}` };
+  }
+  return axios.put(url, body, config);
+};
+
+export { getAPI, postAPI, putAPI };

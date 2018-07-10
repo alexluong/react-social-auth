@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { uploadFile } from 'modules/upload';
+import { loadingSelector } from 'modules/selectors';
+import { uploadFile, UPLOAD_FILE } from 'modules/upload';
 import { Button, Input } from 'elements';
 
 class UploadImage extends React.Component {
@@ -63,7 +64,7 @@ class UploadImage extends React.Component {
           />
           {error.length > 0 && <p style={{ color: 'red' }}>{error}</p>}
           {this.props.uploading && <p>Uploading</p>}
-          <Button type="submit" colorType="primary">
+          <Button type="submit" color="primary">
             Submit
           </Button>
         </form>
@@ -80,7 +81,7 @@ class UploadImage extends React.Component {
 
 export default connect(
   state => ({
-    uploading: state.upload.requesting,
+    uploading: loadingSelector([UPLOAD_FILE])(state),
     file: state.upload.file,
   }),
   { uploadFile },

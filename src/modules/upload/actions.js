@@ -1,7 +1,7 @@
-import { UPLOAD_FILE_REQUEST } from './types';
+import * as TYPES from './types';
 
 const uploadFile = file => ({
-  type: UPLOAD_FILE_REQUEST,
+  type: TYPES.UPLOAD_FILE,
   payload: { file },
 });
 

@@ -7,7 +7,6 @@ import Sidebar from './components/Sidebar';
 const SidebarLayout = ({ style, children }) => (
   <Toggle on>
     {({ on, toggle }) => {
-      console.log(on);
       return (
         <Spring
           native
