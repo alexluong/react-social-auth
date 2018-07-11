@@ -1,38 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Color from 'utilities/Color';
 // Icons
-import CloseIcon from './icons/CloseIcon';
-import ArrowLeftIcon from './icons/ArrowLeftIcon';
+import ArrowLeftIcon from './icons/ArrowLeft';
+import CloseIcon from './icons/Close';
+import HomeIcon from './icons/Home';
+import SearchIcon from './icons/Search';
 
-class Icon extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    /** px value */
-    size: PropTypes.number,
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  /** px value */
+  size: PropTypes.number,
+};
+const defaultProps = {
+  color: 'default',
+  size: 16,
+};
 
-  static defaultProps = {
-    color: 'default',
-    size: 16,
-  };
+const Icon = ({ name, color, size, svgProps, ...props }) => {
+  let icon;
 
-  render() {
-    const { name, color, size, ...props } = this.props;
-
-    switch (name) {
-      case 'close':
-        return <CloseIcon {...props} color={Color.get(color)} size={size} />;
-      case 'arrow-left':
-        return (
-          <ArrowLeftIcon {...props} color={Color.get(color)} size={size} />
-        );
-      default:
-        console.error(`ERROR: ${name} is not an icon`);
-        return <span>Error</span>;
-    }
+  switch (name) {
+    case 'close':
+      icon = <CloseIcon />;
+      break;
+    case 'arrow-left':
+      icon = <ArrowLeftIcon />;
+      break;
+    case 'home':
+      icon = <HomeIcon />;
+      break;
+    case 'search':
+      icon = <SearchIcon />;
+      break;
+    default:
+      console.error(`ERROR: ${name} is not an icon`);
+      return null;
   }
-}
 
+  return (
+    <Wrapper {...props} size={size}>
+      {React.cloneElement(icon, {
+        ...svgProps,
+        color: Color.get(color),
+      })}
+    </Wrapper>
+  );
+};
+Icon.propTypes = propTypes;
+Icon.defaultProps = defaultProps;
 export default Icon;
+
+const Wrapper = styled.span`
+  display: inline-block;
+  position: relative;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
+`;

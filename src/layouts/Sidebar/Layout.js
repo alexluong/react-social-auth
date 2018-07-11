@@ -21,7 +21,7 @@ const SidebarLayout = ({ style, children }) => (
             >
               <Sidebar
                 style={{ gridArea: 'sidebar' }}
-                isOpen={on}
+                open={on}
                 toggleOpen={toggle}
               />
               <Main style={style}>{children}</Main>

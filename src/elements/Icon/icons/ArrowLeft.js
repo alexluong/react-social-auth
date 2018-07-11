@@ -1,14 +1,7 @@
 import React from 'react';
 
-const ArrowLeftIcon = ({ color, size, ...props }) => (
-  <svg
-    {...props}
-    x="0px"
-    y="0px"
-    width={`${size}px`}
-    height={`${size}px`}
-    viewBox="0 0 492 492"
-  >
+const ArrowLeftIcon = ({ color, ...props }) => (
+  <svg {...props} width="100%" height="100%" viewBox="0 0 492 492">
     <path
       fill={color}
       d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124

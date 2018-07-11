@@ -1,24 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { NavLink, Route } from 'react-router-dom';
-
 import Color from 'utilities/Color';
-import { Icon, Button } from 'elements';
-import { position } from 'config/theme';
+import { Button } from 'elements';
+import SidebarItem from './SidebarItem';
 
-const propTypes = {
-  open: PropTypes.bool,
-  onControlClick: PropTypes.func,
-};
+const sidebarRoutes = [
+  {
+    path: '/home',
+    icon: 'home',
+    label: 'Home',
+  },
+  {
+    path: '/settings',
+    icon: 'search',
+    label: 'Settings',
+  },
+  {
+    path: '/facebook',
+    icon: 'close',
+    label: 'Facebook',
+  },
+];
 
-const OpenedSidebar = ({
-  isOpen,
-  toggleOpen,
-  opacity,
-  transform,
-  ...props
-}) => (
+const Sidebar = ({ open, toggleOpen, ...props }) => (
   <Container {...props}>
     <LogoContainer>
       <div>LOGO</div>
@@ -29,36 +33,16 @@ const OpenedSidebar = ({
         onClick={toggleOpen}
       />
     </LogoContainer>
+
     <LinkContainer>
-      <NavLink to="/home">
-        <Route path="/home">
-          {({ match }) => (
-            <span>
-              <Icon name="home" color={match ? 'white' : 'primary'} />
-              <Text>Home</Text>
-            </span>
-          )}
-        </Route>
-      </NavLink>
-      <NavLink to="/facebook">
-        <Route path="/facebook">
-          {({ match }) => (
-            <span>
-              <Icon name="close" color={match ? 'white' : 'primary'} />
-              <Text>Facebook</Text>
-            </span>
-          )}
-        </Route>
-      </NavLink>
-      <NavLink to="/settings">Settings</NavLink>
-      <NavLink to="/dnd">DnD</NavLink>
-      <NavLink to="/upload">Upload</NavLink>
+      {sidebarRoutes.map(route => (
+        <SidebarItem key={route.path} {...route} open={open} />
+      ))}
     </LinkContainer>
   </Container>
 );
-OpenedSidebar.propTypes = propTypes;
 
-export default OpenedSidebar;
+export default Sidebar;
 
 const Container = styled.div`
   width: 100%;
@@ -69,7 +53,9 @@ const LogoContainer = styled.div`
   height: 8rem;
   background-color: royalblue;
   position: relative;
-  ${position('centerChildren')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SidebarControl = styled(Button)`
@@ -98,7 +84,9 @@ const LinkContainer = styled.div`
     &::after {
       visibility: hidden;
       content: '';
-      ${position('absolute')};
+      position: absolute;
+      left: 0;
+      top: 0;
       z-index: -1;
       width: 1rem;
       height: 100%;
@@ -110,8 +98,4 @@ const LinkContainer = styled.div`
       width: 100%;
     }
   }
-`;
-
-const Text = styled.span`
-  margin-left: 1rem;
 `;

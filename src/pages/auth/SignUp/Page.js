@@ -12,8 +12,8 @@ import { signUp } from 'modules/user';
 import Validator from 'utilities/Validator';
 
 class SignUpPage extends React.Component {
-  onSubmit = values => {
-    this.props.signUp(values);
+  onSubmit = (values, actions) => {
+    this.props.signUp({ values, actions });
   };
 
   render() {
