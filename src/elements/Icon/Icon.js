@@ -7,6 +7,7 @@ import ArrowLeftIcon from './icons/ArrowLeft';
 import CloseIcon from './icons/Close';
 import HomeIcon from './icons/Home';
 import SearchIcon from './icons/Search';
+import SettingsIcon from './icons/Settings';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -35,6 +36,9 @@ const Icon = ({ name, color, size, svgProps, ...props }) => {
     case 'search':
       icon = <SearchIcon />;
       break;
+    case 'settings':
+      icon = <SettingsIcon />;
+      break;
     default:
       console.error(`ERROR: ${name} is not an icon`);
       return null;
@@ -58,4 +62,9 @@ const Wrapper = styled.span`
   position: relative;
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 `;

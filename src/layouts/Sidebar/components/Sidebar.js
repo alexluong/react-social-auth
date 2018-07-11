@@ -12,7 +12,7 @@ const sidebarRoutes = [
   },
   {
     path: '/settings',
-    icon: 'search',
+    icon: 'settings',
     label: 'Settings',
   },
   {

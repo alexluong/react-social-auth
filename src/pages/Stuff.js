@@ -7,10 +7,11 @@ class Stuff extends React.Component {
   render() {
     return (
       <SidebarLayout style={{ paddingLeft: '5rem' }}>
-        <Icon name="home" size={100} color="secondary" />
         <Icon name="close" size={100} color="secondary" />
+        <Icon name="home" size={100} color="secondary" />
         <Icon name="arrow-left" size={100} color="secondary" />
         <Icon name="search" size={100} color="secondary" />
+        <Icon name="settings" size={100} color="secondary" />
 
         <br />
 

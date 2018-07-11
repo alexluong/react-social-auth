@@ -23,10 +23,10 @@ const SidebarItem = ({ open, path, icon, label }) => (
   >
     <Route path={path}>
       {({ match }) => (
-        <span>
+        <React.Fragment>
           <Icon name={icon} color={match ? 'white' : 'primary'} />
           {open && <span style={{ marginLeft: '1rem' }}>{label}</span>}
-        </span>
+        </React.Fragment>
       )}
     </Route>
   </NavLink>
