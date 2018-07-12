@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 
 // UIs
 import AuthLayout from 'layouts/Auth';
-import Form from '../components/Form';
+import Form from 'components/Form';
 import SignInLinks from './Links';
 
 // Misc

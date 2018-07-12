@@ -10,6 +10,11 @@ const propTypes = {
   isLoading: PropTypes.bool,
   inputs: PropTypes.array.isRequired,
   links: PropTypes.element,
+  buttonProps: PropTypes.object,
+};
+const defaultProps = {
+  buttonLabel: 'Submit',
+  buttonProps: {},
 };
 
 const Form = ({
@@ -23,8 +28,10 @@ const Form = ({
   isLoading,
   links,
   inputs,
+  buttonLabel,
+  buttonProps,
 }) => (
-  <form onSubmit={handleSubmit} method="post">
+  <form onSubmit={handleSubmit}>
     <InputList
       inputs={inputs}
       values={values}
@@ -36,10 +43,11 @@ const Form = ({
 
     <ButtonContainer>
       <Button
+        {...buttonProps}
         type="submit"
         disabled={isSubmitting || !Validator.isEmptyObject(errors)}
       >
-        Submit
+        {buttonLabel}
       </Button>
 
       {isLoading && <Spinner size="s" />}
@@ -49,7 +57,7 @@ const Form = ({
   </form>
 );
 Form.propTypes = propTypes;
-
+Form.defaultProps = defaultProps;
 export default Form;
 
 const ButtonContainer = styled.div`

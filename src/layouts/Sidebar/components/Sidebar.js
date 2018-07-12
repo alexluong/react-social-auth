@@ -79,6 +79,7 @@ const LinkContainer = styled.div`
       color: ${Color.get('white')};
       &::after {
         visibility: visible;
+        background-color: aquamarine;
       }
     }
     &::after {
